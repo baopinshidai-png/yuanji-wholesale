@@ -1,0 +1,42 @@
+<view class="page">
+  <view class="topbar" style="padding-top:{{statusBarHeight}}px">
+    <view class="topbar-row" style="height:{{navBarHeight}}px">
+      <view class="back" bindtap="back">‹</view>
+      <view class="countdown">仅剩 <text class="cd-num">{{countdown}}</text></view>
+      <view class="cart" bindtap="goCart">
+        <image class="icon-img" src="/images/icons/cart.png" />
+      </view>
+    </view>
+    <view class="search-wrap">
+      <view class="searchbar" bindtap="goSearch">
+        <image class="icon-img sm" src="/images/icons/search.png" />
+        <text class="ph">找好货、找档口</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="banner" wx:if="{{banner}}">
+    <view class="banner-title">{{title}}</view>
+    <view class="banner-brands">
+      <text wx:for="{{brands}}" wx:key="*this">{{item}}</text>
+    </view>
+  </view>
+
+  <view class="sortbar">
+    <view class="sort {{sort === item.key ? 'on' : ''}}" wx:for="{{sorts}}" wx:key="key" data-key="{{item.key}}" bindtap="setSort">{{item.label}}</view>
+    <view class="sort filter" bindtap="openFilter">筛选 ▾</view>
+  </view>
+
+  <view class="ggrid">
+    <view class="cell" wx:for="{{goods}}" wx:key="id">
+      <goods-card goods="{{item}}" />
+    </view>
+  </view>
+
+  <view class="fixed-bar" wx:if="{{!certified}}">
+    <view class="login-bar">
+      <text class="tip">登录注册，完成认证可看拿货价</text>
+      <view class="go" bindtap="goLogin">立即登录</view>
+    </view>
+  </view>
+</view>

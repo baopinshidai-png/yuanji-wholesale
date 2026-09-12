@@ -1,0 +1,23 @@
+<view class="page">
+  <view class="nav" style="padding-top:{{statusBarHeight}}px">
+    <view class="nav-inner" style="height:{{navBarHeight}}px">
+      <view class="nav-back" bindtap="back">‹</view>
+      素材中心
+    </view>
+  </view>
+
+  <view class="mt-tip">
+    一键下载商品图与实拍视频，直接发圈 / 发短视频；批量下载与「加购分组」在正式版由后端提供。
+  </view>
+
+  <view class="mt-grid">
+    <view class="mt-item" wx:for="{{goods}}" wx:key="id">
+      <image src="{{item.imgUrl}}" mode="aspectFill" />
+      <view class="mt-title">{{item.title}}</view>
+      <view class="mt-ops">
+        <view class="mt-btn" catchtap="download">下载图</view>
+        <view class="mt-btn ghost" data-t="{{item.title}}" catchtap="copy">复制文案</view>
+      </view>
+    </view>
+  </view>
+</view>

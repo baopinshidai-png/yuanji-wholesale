@@ -1,0 +1,19 @@
+<view class="page">
+  <view class="nav" style="padding-top:{{statusBarHeight}}px">
+    <view class="nav-inner" style="height:{{navBarHeight}}px">
+      <view class="nav-back" bindtap="back">‹</view>
+      收藏商品
+    </view>
+  </view>
+  <view class="ggrid" wx:if="{{goods.length}}">
+    <view class="cell" wx:for="{{goods}}" wx:key="id">
+      <goods-card goods="{{item}}" />
+    </view>
+  </view>
+  <view class="empty" wx:else>
+    <image class="empty-img" src="/images/icons/heart.png" />
+    <text class="t">还没有收藏商品</text>
+    <text class="s">看到好货点个心形，这里就能找到</text>
+    <view class="btn-mini" bindtap="goHome">去专场挑货</view>
+  </view>
+</view>

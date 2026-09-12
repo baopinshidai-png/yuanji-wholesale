@@ -1,0 +1,52 @@
+<view class="page cat">
+  <view class="cat-head" style="padding-top:{{statusBarHeight}}px">
+    <view class="searchbar" bindtap="goSearch">
+      <image class="icon-img sm" src="/images/icons/search.png" />
+      <text class="ph">搜索商品或档口</text>
+    </view>
+  </view>
+  <view class="cat-body">
+    <scroll-view class="rail" scroll-y>
+      <view
+        class="rail-item {{active === item.id ? 'on' : ''}}"
+        wx:for="{{cats}}"
+        wx:key="id"
+        data-id="{{item.id}}"
+        bindtap="pickCat"
+      >{{item.name}}</view>
+    </scroll-view>
+    <scroll-view class="cat-main" scroll-y>
+      <block wx:if="{{active === 'market'}}">
+        <view class="block-title">热门市场</view>
+        <view class="market-grid">
+          <view class="market-cell" wx:for="{{markets}}" wx:key="id" data-m="{{item.name}}" bindtap="pickMarket">{{item.name}}</view>
+        </view>
+      </block>
+      <block wx:else>
+        <view class="block-title">热门分类推荐</view>
+        <view class="hot-grid">
+          <view class="hot-cell" wx:for="{{hot}}" wx:key="*this" data-c="{{item}}" bindtap="pickHot">
+            <image src="/images/goods/g{{index + 1}}.jpg" mode="aspectFill" />
+            <view class="hot-name">{{item}}</view>
+          </view>
+        </view>
+        <view class="block-title" wx:if="{{active !== 'rec' && active !== 'style'}}">全部二级分类</view>
+        <view class="sub-wrap" wx:if="{{subs.length}}">
+          <view
+            class="sub-chip {{activeSub === item ? 'on' : ''}}"
+            wx:for="{{subs}}"
+            wx:key="*this"
+            data-sub="{{item}}"
+            bindtap="pickSub"
+          >{{item}}</view>
+        </view>
+        <view class="block-title">在架商品</view>
+        <view class="ggrid tight">
+          <view class="cell" wx:for="{{goods}}" wx:key="id">
+            <goods-card goods="{{item}}" />
+          </view>
+        </view>
+      </block>
+    </scroll-view>
+  </view>
+</view>

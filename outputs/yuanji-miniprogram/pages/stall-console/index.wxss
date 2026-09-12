@@ -1,0 +1,309 @@
+.sc-page {
+  padding-bottom: 80rpx;
+}
+
+.sc-head {
+  background: #fff;
+}
+
+.sc-nav {
+  display: flex;
+  align-items: center;
+  padding: 0 20rpx;
+}
+
+.back {
+  width: 60rpx;
+  font-size: 44rpx;
+  line-height: 1;
+}
+
+.sc-nav-title {
+  margin: 0 auto;
+  font-size: 30rpx;
+  font-weight: 600;
+}
+
+.sc-logout {
+  width: 80rpx;
+  text-align: right;
+  font-size: 25rpx;
+  color: #9c9ca6;
+}
+
+/* ---------- 邀请码登录 ---------- */
+.sc-login {
+  padding: 60rpx 48rpx;
+}
+
+.sc-login-title {
+  font-size: 44rpx;
+  font-weight: 700;
+}
+
+.sc-login-sub {
+  margin-top: 16rpx;
+  font-size: 24rpx;
+  color: #62626e;
+  line-height: 38rpx;
+}
+
+.sc-input {
+  margin-top: 40rpx;
+  background: #f6f7f9;
+  border-radius: 20rpx;
+  padding: 0 28rpx;
+  height: 104rpx;
+  display: flex;
+  align-items: center;
+}
+
+.sc-input input {
+  flex: 1;
+  font-size: 30rpx;
+  letter-spacing: 2rpx;
+}
+
+.sc-btn {
+  margin-top: 40rpx;
+}
+
+.sc-btn.off {
+  opacity: 0.6;
+}
+
+.sc-tip {
+  margin-top: 32rpx;
+  font-size: 22rpx;
+  color: #9c9ca6;
+  text-align: center;
+}
+
+/* ---------- 数据卡 ---------- */
+.sc-stats {
+  display: flex;
+  padding: 28rpx 12rpx;
+}
+
+.sc-stat {
+  flex: 1;
+  text-align: center;
+}
+
+.sc-stat .n {
+  display: block;
+  font-size: 34rpx;
+  font-weight: 700;
+}
+
+.sc-stat .t {
+  display: block;
+  margin-top: 8rpx;
+  font-size: 21rpx;
+  color: #9c9ca6;
+}
+
+/* ---------- tab ---------- */
+.sc-tabs {
+  display: flex;
+  margin: 8rpx 24rpx 0;
+  background: #fff;
+  border-radius: 999rpx;
+  padding: 8rpx 12rpx;
+  box-shadow: 0 2rpx 14rpx rgba(17, 17, 30, 0.05);
+}
+
+.sc-tab {
+  flex: 1;
+  text-align: center;
+  font-size: 26rpx;
+  color: #62626e;
+  padding: 14rpx 0;
+  border-radius: 999rpx;
+}
+
+.sc-tab.on {
+  color: #ff3355;
+  font-weight: 700;
+  background: #fff0f3;
+}
+
+.sc-tab.goods {
+  flex: none;
+  padding: 14rpx 30rpx;
+}
+
+/* ---------- 订单卡 ---------- */
+.sc-status {
+  font-size: 25rpx;
+  font-weight: 600;
+  color: #ff3355;
+}
+
+.sc-item {
+  display: flex;
+  padding-top: 20rpx;
+}
+
+.sc-item image {
+  width: 140rpx;
+  height: 186rpx;
+  border-radius: 16rpx;
+  background: #f4f4f6;
+  flex: none;
+}
+
+.sc-item-body {
+  flex: 1;
+  margin-left: 18rpx;
+  min-width: 0;
+}
+
+.sc-item-title {
+  font-size: 26rpx;
+  line-height: 37rpx;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+}
+
+.sc-item-price {
+  margin-top: 12rpx;
+}
+
+.sc-item-price .price {
+  font-size: 30rpx;
+}
+
+.sc-addr {
+  margin-top: 12rpx;
+  font-size: 22rpx;
+  color: #62626e;
+  line-height: 34rpx;
+}
+
+.sc-actions {
+  display: flex;
+  align-items: center;
+  margin-top: 20rpx;
+  padding-top: 20rpx;
+  border-top: 1rpx solid #f2f2f5;
+}
+
+.sc-sum {
+  flex: 1;
+  font-size: 23rpx;
+  color: #62626e;
+}
+
+/* ---------- 商品 ---------- */
+.sc-goods {
+  display: flex;
+  align-items: center;
+}
+
+.sc-goods image {
+  width: 140rpx;
+  height: 186rpx;
+  border-radius: 16rpx;
+  background: #f4f4f6;
+  flex: none;
+}
+
+.sc-goods-body {
+  flex: 1;
+  margin: 0 18rpx;
+  min-width: 0;
+}
+
+.sc-add {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 20rpx 24rpx 0;
+  background: #fff0f3;
+  color: #ff3355;
+  font-size: 27rpx;
+  font-weight: 600;
+  border-radius: 24rpx;
+  padding: 28rpx 0;
+}
+
+.sc-add .plus {
+  font-size: 34rpx;
+  margin-right: 12rpx;
+}
+
+.sc-settle {
+  display: flex;
+  align-items: center;
+  margin: 20rpx 24rpx 0;
+  background: #fff;
+  border-radius: 20rpx;
+  padding: 26rpx 24rpx;
+  box-shadow: 0 2rpx 14rpx rgba(17, 17, 30, 0.05);
+}
+
+.sc-settle .k {
+  flex: 1;
+  font-size: 27rpx;
+}
+
+.sc-settle .v {
+  font-size: 25rpx;
+  color: #9c9ca6;
+}
+
+.sc-settle .v.approved {
+  color: #0d8f60;
+  font-weight: 600;
+}
+
+.sc-settle .v.pending {
+  color: #ff8a00;
+  font-weight: 600;
+}
+
+.sc-settle .v.rejected {
+  color: #ff3355;
+  font-weight: 600;
+}
+
+.sc-settle .arrow {
+  margin-left: 12rpx;
+  color: #9c9ca6;
+}
+
+.sc-edit {
+  margin-left: 16rpx;
+  font-size: 24rpx;
+  color: #62626e;
+  background: #f4f4f7;
+  border-radius: 999rpx;
+  padding: 12rpx 22rpx;
+}
+
+.sc-settle-sum {
+  display: flex;
+  padding: 28rpx 12rpx;
+}
+
+.hl {
+  color: #ff2f4f;
+  font-weight: 600;
+}
+
+.as-imgs {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 12rpx;
+}
+
+.as-imgs image {
+  width: 130rpx;
+  height: 130rpx;
+  border-radius: 12rpx;
+  margin: 0 12rpx 12rpx 0;
+  background: #f4f4f6;
+}

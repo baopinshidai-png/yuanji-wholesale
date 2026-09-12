@@ -1,0 +1,420 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>源集 · 运营后台</title>
+<style>
+  :root { --brand:#ff3355; --line:#e8e8ee; --text:#17171c; --muted:#7a7a86; --bg:#f5f6f8; }
+  * { box-sizing: border-box; }
+  body { margin:0; font-family: system-ui,"Microsoft YaHei",sans-serif; background:var(--bg); color:var(--text); }
+  header { background:#fff; border-bottom:1px solid var(--line); padding:14px 20px; display:flex; align-items:center; gap:16px; position:sticky; top:0; z-index:5; }
+  header h1 { font-size:17px; margin:0; }
+  header .tag { font-size:12px; color:#fff; background:var(--brand); border-radius:999px; padding:2px 10px; }
+  header .spacer { flex:1; }
+  input,select,button,textarea { font:inherit; }
+  input,select { padding:8px 10px; border:1px solid var(--line); border-radius:8px; background:#fff; }
+  button { padding:8px 14px; border:1px solid var(--line); background:#fff; border-radius:8px; cursor:pointer; }
+  button.primary { background:var(--brand); border-color:var(--brand); color:#fff; font-weight:600; }
+  button.small { padding:4px 10px; font-size:12px; }
+  nav { display:flex; gap:8px; padding:14px 20px 0; flex-wrap:wrap; }
+  nav button.active { background:#17171c; color:#fff; border-color:#17171c; }
+  main { padding:16px 20px 60px; }
+  section { display:none; }
+  section.active { display:block; }
+  .cards { display:grid; grid-template-columns:repeat(auto-fill,minmax(180px,1fr)); gap:12px; }
+  .card { background:#fff; border-radius:12px; padding:16px; box-shadow:0 1px 3px rgba(0,0,0,.05); }
+  .card .n { font-size:24px; font-weight:700; }
+  .card .t { font-size:12px; color:var(--muted); margin-top:4px; }
+  table { width:100%; border-collapse:collapse; background:#fff; border-radius:12px; overflow:hidden; box-shadow:0 1px 3px rgba(0,0,0,.05); }
+  th,td { text-align:left; padding:10px 12px; font-size:13px; border-bottom:1px solid var(--line); }
+  th { background:#fafafc; color:var(--muted); font-weight:600; }
+  tr:last-child td { border-bottom:none; }
+  .pill { display:inline-block; font-size:11px; padding:2px 8px; border-radius:999px; background:#f0f0f4; color:#555; }
+  .pill.ok { background:#e7f8f0; color:#0d8f60; }
+  .pill.warn { background:#fff4e5; color:#b26a00; }
+  .pill.bad { background:#ffe9ee; color:#d81b47; }
+  .toolbar { display:flex; gap:8px; align-items:center; margin-bottom:12px; flex-wrap:wrap; }
+  .muted { color:var(--muted); font-size:12px; }
+  pre { background:#17171c; color:#d6ffdf; padding:12px; border-radius:10px; overflow:auto; max-height:320px; font-size:12px; }
+  #login { max-width:420px; margin:80px auto; background:#fff; padding:28px; border-radius:14px; box-shadow:0 4px 20px rgba(0,0,0,.08); }
+  #login h2 { margin:0 0 8px; }
+  #login p { color:var(--muted); font-size:13px; margin:0 0 16px; }
+  .row { display:flex; gap:8px; align-items:center; }
+</style>
+</head>
+<body>
+<div id="login">
+  <h2>源集 · 运营后台</h2>
+  <p>输入后端配置的 ADMIN_TOKEN 进入（环境变量 `ADMIN_TOKEN`）。</p>
+  <div class="row">
+    <input id="token" type="password" placeholder="ADMIN_TOKEN" style="flex:1" />
+    <button class="primary" onclick="login()">进入</button>
+  </div>
+  <p id="loginErr" class="muted" style="color:#d81b47;margin-top:10px"></p>
+</div>
+
+<div id="app" style="display:none">
+  <header>
+    <h1>源集 · 运营后台</h1>
+    <span class="tag" id="payMode">-</span>
+    <div class="spacer"></div>
+    <span class="muted" id="who"></span>
+    <button class="small" onclick="logout()">退出</button>
+  </header>
+  <nav id="nav"></nav>
+  <main>
+    <section id="s-overview" class="active"></section>
+    <section id="s-profiles"></section>
+    <section id="s-orders"></section>
+    <section id="s-aftersales"></section>
+    <section id="s-settle"></section>
+    <section id="s-bills"></section>
+    <section id="s-stalls"></section>
+    <section id="s-campaigns"></section>
+  </main>
+</div>
+
+<script>
+const API = location.origin + '/api/v1'
+let TOKEN = localStorage.getItem('yuanji_admin_token') || ''
+const $ = (id) => document.getElementById(id)
+const esc = (s) => String(s == null ? '' : s).replace(/[&<>"]/g, (c) => ({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;' }[c]))
+
+async function api(path, options) {
+  const res = await fetch(API + path, Object.assign({
+    headers: Object.assign({ 'content-type': 'application/json' }, TOKEN ? { 'x-admin-token': TOKEN } : {}),
+  }, options || {}))
+  const body = await res.json().catch(() => ({}))
+  if (!res.ok || body.code !== 0) throw new Error(body.msg || ('请求失败 ' + res.status))
+  return body.data
+}
+
+function login() {
+  TOKEN = $('token').value.trim()
+  api('/admin/overview').then(() => {
+    localStorage.setItem('yuanji_admin_token', TOKEN)
+    $('login').style.display = 'none'
+    $('app').style.display = 'block'
+    $('who').textContent = '已登录'
+    show('overview')
+  }).catch((e) => { $('loginErr').textContent = e.message })
+}
+function logout() { localStorage.removeItem('yuanji_admin_token'); location.reload() }
+
+const TABS = [
+  ['overview', '总览'], ['profiles', '档口审核'], ['orders', '订单'], ['aftersales', '售后仲裁'],
+  ['settle', '分账'], ['bills', '对账'], ['stalls', '档口与邀请码'], ['campaigns', '活动配置'],
+]
+$('nav').innerHTML = TABS.map(([k, label]) => `<button id="nav-${k}" onclick="show('${k}')">${label}</button>`).join('')
+
+function show(key) {
+  TABS.forEach(([k]) => {
+    $('s-' + k).classList.toggle('active', k === key)
+    $('nav-' + k).classList.toggle('active', k === key)
+  })
+  ;({ overview: loadOverview, profiles: loadProfiles, orders: loadOrders, aftersales: loadAftersales, settle: loadSettle, bills: loadBills, stalls: loadStalls, campaigns: loadCampaigns }[key])()
+}
+
+// ---------- 活动配置 ----------
+async function loadCampaigns() {
+  const el = $('s-campaigns')
+  el.innerHTML = '<p class="muted">加载中…</p>'
+  try {
+    const d = await api('/admin/campaigns')
+    el.innerHTML = `
+      <div class="toolbar">
+        <input id="cpTitle" placeholder="标题，如：国庆预热专场" style="width:240px" />
+        <input id="cpSub" placeholder="副标题（选填）" style="width:200px" />
+        <input id="cpLink" placeholder="跳转路径，如 /pages/list/index?sort=new" style="width:300px" />
+        <select id="cpPos">
+          <option value="home_top">首页横幅</option>
+          <option value="home_board">首页榜单</option>
+          <option value="home_op">首页运营卡</option>
+        </select>
+        <button class="primary" onclick="saveCampaign()">新增</button>
+        <span class="muted">排序：数字越小越靠前</span>
+        <input id="cpSort" type="number" placeholder="排序" style="width:80px" />
+      </div>
+      <table><thead><tr><th>标题</th><th>副标题</th><th>位置</th><th>跳转</th><th>排序</th><th>状态</th><th>操作</th></tr></thead><tbody>
+      ${(d.list || []).map((c) => `<tr>
+        <td>${esc(c.title)}</td><td>${esc(c.subtitle || '')}</td>
+        <td>${esc(c.position)}</td><td class="muted">${esc(c.link || '-')}</td><td>${c.sort || 0}</td>
+        <td><span class="pill ${c.enabled ? 'ok' : ''}">${c.enabled ? '展示中' : '已停用'}</span></td>
+        <td>
+          <button class="small" onclick="toggleCampaign('${c.id}',${c.enabled ? 'false' : 'true'})">${c.enabled ? '停用' : '启用'}</button>
+          <button class="small" onclick="removeCampaign('${c.id}')">删除</button>
+        </td>
+      </tr>`).join('')}
+      </tbody></table>
+      <p class="muted" style="margin-top:10px">首页横幅（home_top）会显示在首页顶部；改完立即生效，小程序下次进首页即可看到（客户端有缓存时下拉刷新）。</p>`
+  } catch (e) { el.innerHTML = `<p class="muted">${esc(e.message)}</p>` }
+}
+
+async function saveCampaign() {
+  try {
+    await api('/admin/campaigns', {
+      method: 'POST',
+      body: JSON.stringify({
+        title: $('cpTitle').value.trim(),
+        subtitle: $('cpSub').value.trim(),
+        link: $('cpLink').value.trim(),
+        position: $('cpPos').value,
+        sort: Number($('cpSort').value) || 0,
+        enabled: true,
+      }),
+    })
+    loadCampaigns()
+  } catch (e) { alert(e.message) }
+}
+async function toggleCampaign(id, enabled) {
+  try { await api('/admin/campaigns/' + id + '/toggle', { method: 'POST', body: JSON.stringify({ enabled }) }); loadCampaigns() }
+  catch (e) { alert(e.message) }
+}
+async function removeCampaign(id) {
+  if (!confirm('确认删除该运营位？')) return
+  try { await api('/admin/campaigns/' + id + '/remove', { method: 'POST' }); loadCampaigns() }
+  catch (e) { alert(e.message) }
+}
+
+async function loadAftersales() {
+  const el = $('s-aftersales')
+  el.innerHTML = '<p class="muted">加载中…</p>'
+  try {
+    const d = await api('/admin/aftersales?status=all')
+    el.innerHTML = `
+      <div class="toolbar"><span class="muted">共 ${d.total} 张售后单；档口未处理的显示 pending，平台可强制退款</span></div>
+      <table><thead><tr><th>售后单</th><th>订单</th><th>档口</th><th>类型</th><th>金额</th><th>原因</th><th>状态</th><th>操作</th></tr></thead><tbody>
+      ${d.list.map((t) => `<tr>
+        <td>${esc(t.id)}</td><td>${esc(t.orderId)}</td><td>${esc(t.stallName)}</td><td>${esc(t.type)}</td>
+        <td>¥${t.amount}</td><td>${esc(t.reason)}</td>
+        <td><span class="pill ${t.status === 'refunded' || t.status === 'approved' ? 'ok' : t.status === 'pending' ? 'warn' : 'bad'}">${esc(t.status)}</span></td>
+        <td>${t.status === 'pending' || t.status === 'stall_rejected' ? `
+          <button class="small primary" onclick="arbitrate('${t.id}',true)">支持买家并退款</button>
+          <button class="small" onclick="arbitrate('${t.id}',false)">驳回</button>` : '-'}</td>
+      </tr>`).join('')}
+      </tbody></table>`
+  } catch (e) { el.innerHTML = `<p class="muted">${esc(e.message)}</p>` }
+}
+
+async function arbitrate(id, approve) {
+  const note = approve ? '' : (prompt('驳回说明') || '证据不足')
+  try {
+    await api('/admin/aftersales/' + id + '/arbitrate', { method: 'POST', body: JSON.stringify({ approve, note }) })
+    loadAftersales()
+  } catch (e) { alert(e.message) }
+}
+
+async function loadOverview() {
+  const el = $('s-overview')
+  el.innerHTML = '<p class="muted">加载中…</p>'
+  try {
+    const d = await api('/admin/overview')
+    $('payMode').textContent = d.payMode === 'wechat' ? '微信支付' : '演示支付'
+    el.innerHTML = `
+      <div class="cards">
+        <div class="card"><div class="n">${d.today.orders}</div><div class="t">今日成交订单</div></div>
+        <div class="card"><div class="n">¥${d.today.amount}</div><div class="t">今日收款金额</div></div>
+        <div class="card"><div class="n">${d.todos.pendingProfiles}</div><div class="t">待审档口</div></div>
+        <div class="card"><div class="n">${d.todos.unship}</div><div class="t">待发货订单</div></div>
+        <div class="card"><div class="n">${d.todos.refunding}</div><div class="t">退款处理中</div></div>
+        <div class="card"><div class="n">¥${d.todos.holdAmount}</div><div class="t">挂账金额（${d.todos.holdSettlements} 单）</div></div>
+      </div>
+      <h3>对账快照（${d.money.date}）</h3>
+      <table><tbody>
+        <tr><th>已收款</th><td>${d.money.paid.count} 单 / ¥${d.money.paid.amount}</td></tr>
+        <tr><th>已退款</th><td>${d.money.refunded.count} 单 / ¥${d.money.refunded.amount}</td></tr>
+        <tr><th>已分账</th><td>${d.money.settle.settledCount} 单 / 档口 ¥${d.money.settle.stallShare} / 平台佣金 ¥${d.money.settle.platformFee}</td></tr>
+        <tr><th>挂账</th><td>¥${d.money.settle.holdAmount}</td></tr>
+      </tbody></table>
+      <h3>待处理提醒</h3>
+      <div class="toolbar">
+        <button onclick="sweep()">扫描超时未支付订单</button>
+        <button onclick="runSettle()">补跑待分账</button>
+      </div>
+      <pre id="ovOut">—</pre>`
+  } catch (e) { el.innerHTML = `<p class="muted">${esc(e.message)}</p>` }
+}
+
+async function sweep() {
+  try { $('ovOut').textContent = JSON.stringify(await api('/admin/sweep', { method: 'POST' }), null, 2) }
+  catch (e) { $('ovOut').textContent = e.message }
+}
+async function runSettle() {
+  try { $('ovOut').textContent = JSON.stringify(await api('/admin/settle/run', { method: 'POST' }), null, 2) }
+  catch (e) { $('ovOut').textContent = e.message }
+}
+
+async function loadProfiles() {
+  const el = $('s-profiles')
+  el.innerHTML = '<p class="muted">加载中…</p>'
+  try {
+    const list = await api('/admin/stall-profiles?status=all')
+    el.innerHTML = `
+      <div class="toolbar"><span class="muted">共 ${list.length} 个档口提交过资料</span></div>
+      <table><thead><tr><th>档口</th><th>联系人</th><th>电话</th><th>结算账户</th><th>状态</th><th>操作</th></tr></thead><tbody>
+      ${list.map((p) => `<tr>
+        <td>${esc(p.stallName)}</td>
+        <td>${esc(p.contact)}</td>
+        <td>${esc(p.phone)}</td>
+        <td>${esc((p.account && p.account.type === 'PERSONAL_OPENID' ? '微信号 ' : '商户号 ') + ((p.account && p.account.account) || '-'))}</td>
+        <td><span class="pill ${p.status === 'approved' ? 'ok' : p.status === 'pending' ? 'warn' : p.status === 'rejected' ? 'bad' : ''}">${esc(p.status)}</span></td>
+        <td>${p.status === 'pending' ? `<button class="small primary" onclick="review('${p.stallId}',true)">通过</button> <button class="small" onclick="review('${p.stallId}',false)">驳回</button>` : '-'}</td>
+      </tr>`).join('')}
+      </tbody></table>`
+  } catch (e) { el.innerHTML = `<p class="muted">${esc(e.message)}</p>` }
+}
+
+async function review(stallId, approve) {
+  const note = approve ? '' : (prompt('驳回原因') || '资料不完整')
+  try {
+    await api('/admin/stalls/' + stallId + '/review', { method: 'POST', body: JSON.stringify({ approve, note }) })
+    loadProfiles()
+  } catch (e) { alert(e.message) }
+}
+
+async function loadOrders() {
+  const el = $('s-orders')
+  el.innerHTML = `
+    <div class="toolbar">
+      <select id="oStatus" onchange="loadOrders()">
+        <option value="all">全部状态</option>
+        ${['unpaid','unship','shipped','done','refunding','refunded','cancelled'].map((s) => `<option value="${s}">${s}</option>`).join('')}
+      </select>
+      <input id="oKw" placeholder="订单号 / 档口" />
+      <button onclick="loadOrders()">查询</button>
+    </div>
+    <div id="oList" class="muted">加载中…</div>`
+  const status = ($('oStatus') && $('oStatus').value) || 'all'
+  const kw = ($('oKw') && $('oKw').value.trim()) || ''
+  try {
+    const d = await api('/admin/orders?status=' + status + '&kw=' + encodeURIComponent(kw))
+    $('oList').innerHTML = `<table><thead><tr><th>订单号</th><th>档口</th><th>买家</th><th>件数</th><th>实付</th><th>状态</th><th>分账</th><th>运单号</th><th>时间</th></tr></thead><tbody>
+      ${d.list.map((o) => `<tr>
+        <td>${esc(o.id)}</td><td>${esc(o.stallName)}</td><td>${esc(o.buyer)}</td><td>${o.count}</td>
+        <td>¥${o.payable}</td>
+        <td><span class="pill ${o.status === 'done' ? 'ok' : o.status === 'refunded' || o.status === 'cancelled' ? 'bad' : o.status === 'unpaid' ? 'warn' : ''}">${esc(o.status)}</span></td>
+        <td>${o.settle ? esc(o.settle.status) : '-'}</td>
+        <td>${esc(o.logistics || '-')}</td>
+        <td class="muted">${esc(String(o.createdAt).replace('T',' ').slice(0,19))}</td>
+      </tr>`).join('')}
+    </tbody></table>`
+  } catch (e) { $('oList').innerHTML = esc(e.message) }
+}
+
+async function loadSettle() {
+  const el = $('s-settle')
+  el.innerHTML = '<p class="muted">加载中…</p>'
+  try {
+    const d = await api('/admin/settlements')
+    el.innerHTML = `
+      <div class="cards">
+        <div class="card"><div class="n">${d.rate * 100}%</div><div class="t">平台佣金比例</div></div>
+        <div class="card"><div class="n">${d.counts.success}</div><div class="t">已分账订单</div></div>
+        <div class="card"><div class="n">${d.counts.hold}</div><div class="t">挂账订单</div></div>
+        <div class="card"><div class="n">¥${(d.amountsFen.settled / 100).toFixed(2)}</div><div class="t">已分账金额</div></div>
+        <div class="card"><div class="n">¥${(d.amountsFen.hold / 100).toFixed(2)}</div><div class="t">挂账金额</div></div>
+      </div>
+      <div class="toolbar"><button class="primary" onclick="runSettle()">补跑待分账</button></div>
+      <table><thead><tr><th>订单号</th><th>档口</th><th>实付</th><th>档口货款</th><th>平台佣金</th><th>分账状态</th></tr></thead><tbody>
+      ${d.orders.filter((o) => o.settle).map((o) => `<tr>
+        <td>${esc(o.id)}</td><td>${esc(o.stallName || '')}</td><td>¥${o.payable}</td>
+        <td>¥${((o.settle.amountFen || 0) / 100).toFixed(2)}</td>
+        <td>¥${((o.settle.platformFeeFen || 0) / 100).toFixed(2)}</td>
+        <td><span class="pill ${o.settle.status === 'success' ? 'ok' : o.settle.status === 'hold' ? 'warn' : 'bad'}">${esc(o.settle.status)}</span>
+          <span class="muted">${esc(o.settle.reason || '')}</span></td>
+      </tr>`).join('')}
+      </tbody></table>`
+  } catch (e) { el.innerHTML = `<p class="muted">${esc(e.message)}</p>` }
+}
+
+async function loadBills() {
+  const el = $('s-bills')
+  el.innerHTML = `
+    <div class="toolbar">
+      <input id="bDate" type="date" value="${new Date().toISOString().slice(0,10)}" />
+      <button onclick="loadBillSummary()">看汇总</button>
+      <button onclick="exportBill()">导出本地 CSV</button>
+      <button onclick="checkReconcile()">看逐笔差异</button>
+      <button onclick="downloadBill('trade')">下载微信交易账单</button>
+      <button onclick="downloadBill('fundflow')">下载资金账单</button>
+    </div>
+    <div id="bOut" class="muted">—</div>`
+  loadBillSummary()
+}
+async function loadBillSummary() {
+  const date = $('bDate').value
+  try {
+    const d = await api('/admin/bills/summary?date=' + date)
+    $('bOut').innerHTML = `<table><tbody>
+      <tr><th>已收款</th><td>${d.paid.count} 单 / ¥${d.paid.amount}</td></tr>
+      <tr><th>已退款</th><td>${d.refunded.count} 单 / ¥${d.refunded.amount}</td></tr>
+      <tr><th>档口货款（已分账）</th><td>¥${d.settle.stallShare}</td></tr>
+      <tr><th>平台佣金</th><td>¥${d.settle.platformFee}</td></tr>
+      <tr><th>挂账</th><td>¥${d.settle.holdAmount}</td></tr>
+      <tr><th>按档口</th><td>${d.byStall.map((s) => esc(s.stallName) + ' ' + s.orders + '单/¥' + s.paidAmount).join('　')}</td></tr>
+    </tbody></table>`
+  } catch (e) { $('bOut').textContent = e.message }
+}
+async function exportBill() {
+  const date = $('bDate').value
+  try {
+    const d = await api('/admin/bills/export?date=' + date)
+    $('bOut').innerHTML = `<p class="muted">已写入 ${esc(d.file)}</p><pre>${esc(d.csv)}</pre>`
+  } catch (e) { $('bOut').textContent = e.message }
+}
+async function downloadBill(type) {
+  const date = $('bDate').value
+  try {
+    const d = await api('/admin/bills/download', { method: 'POST', body: JSON.stringify({ date, type }) })
+    $('bOut').innerHTML = `<pre>${esc(JSON.stringify(d, null, 2))}</pre>`
+  } catch (e) { $('bOut').textContent = e.message }
+}
+
+// 逐笔差异：跑一次对账并展示差异明细
+async function checkReconcile() {
+  const date = $('bDate').value
+  try {
+    const r = await api('/admin/bills/reconcile', { method: 'POST', body: JSON.stringify({ date }) })
+    const d = r.diffs
+    $('bOut').innerHTML = `
+      <table><tbody>
+        <tr><th>对账日期</th><td>${esc(r.date)}</td></tr>
+        <tr><th>状态</th><td><span class="pill ${r.status === 'ok' ? 'ok' : r.status === 'diff' ? 'bad' : 'warn'}">${esc(r.status)}</span> ${esc(r.message || '')}</td></tr>
+        <tr><th>本地已收款</th><td>${d ? d.localCount : 0} 笔</td></tr>
+        <tr><th>微信账单</th><td>${r.wechat ? r.wechat.rows + ' 行' : '未获取（未配商户号或账单未生成）'}</td></tr>
+        <tr><th>微信有、本地无</th><td>${d && d.missingLocal.length ? d.missingLocal.join(', ') : '无'}</td></tr>
+        <tr><th>本地有、微信无</th><td>${d && d.missingInWechat.length ? d.missingInWechat.join(', ') : '无'}</td></tr>
+        <tr><th>金额不一致</th><td>${d && d.amountMismatch.length ? d.amountMismatch.map((x) => x.orderId + '(本地' + x.local + '/微信' + x.wechat + ')').join('，') : '无'}</td></tr>
+      </tbody></table>`
+  } catch (e) { $('bOut').textContent = e.message }
+}
+
+async function loadStalls() {
+  const el = $('s-stalls')
+  el.innerHTML = '<p class="muted">加载中…</p>'
+  try {
+    const stalls = await api('/stalls')
+    el.innerHTML = `
+      <div class="toolbar"><span class="muted">点「发码」生成/查看该档口的邀请码，发给合作档口即可进入工作台</span></div>
+      <table><thead><tr><th>档口</th><th>市场</th><th>评分</th><th>发货率</th><th>邀请码</th><th>操作</th></tr></thead><tbody>
+      ${stalls.map((s) => `<tr>
+        <td>${esc(s.name)}</td><td>${esc(s.market)}</td><td>${s.score}</td><td>${s.shipRate}%</td>
+        <td><span id="code-${s.id}" class="muted">-</span></td>
+        <td><button class="small" onclick="invite('${s.id}')">发码</button></td>
+      </tr>`).join('')}
+      </tbody></table>`
+  } catch (e) { el.innerHTML = `<p class="muted">${esc(e.message)}</p>` }
+}
+async function invite(stallId) {
+  try {
+    const d = await api('/admin/stalls/' + stallId + '/invite', { method: 'POST' })
+    $('code-' + stallId).textContent = d.code
+    $('code-' + stallId).className = 'pill ok'
+  } catch (e) { alert(e.message) }
+}
+
+if (TOKEN) login()
+</script>
+</body>
+</html>

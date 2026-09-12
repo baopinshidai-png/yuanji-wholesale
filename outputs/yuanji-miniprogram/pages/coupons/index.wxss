@@ -1,0 +1,108 @@
+.page {
+  padding-bottom: 80rpx;
+}
+
+.cp-head {
+  padding: 28rpx 32rpx 8rpx;
+}
+
+.cp-title {
+  font-size: 40rpx;
+  font-weight: 700;
+}
+
+.cp-sub {
+  margin-top: 10rpx;
+  font-size: 23rpx;
+  color: #62626e;
+}
+
+.cp {
+  position: relative;
+  display: flex;
+  align-items: center;
+  margin: 20rpx 24rpx 0;
+  background: #fff;
+  border-radius: 24rpx;
+  padding: 28rpx 24rpx;
+  box-shadow: 0 2rpx 14rpx rgba(17, 17, 30, 0.05);
+  overflow: hidden;
+}
+
+.cp::before {
+  content: "";
+  position: absolute;
+  left: 210rpx;
+  top: 20rpx;
+  bottom: 20rpx;
+  border-left: 2rpx dashed #eeeef2;
+}
+
+.cp-left {
+  width: 186rpx;
+  flex: none;
+  text-align: center;
+}
+
+.cp-amount {
+  font-size: 46rpx;
+  font-weight: 700;
+  color: #ff2f4f;
+  line-height: 1.1;
+}
+
+.cp-amount .rmb {
+  font-size: 24rpx;
+}
+
+.cp-amount.small {
+  font-size: 32rpx;
+  color: #ff3355;
+}
+
+.cp-cond {
+  margin-top: 8rpx;
+  font-size: 21rpx;
+  color: #9c9ca6;
+}
+
+.cp-mid {
+  flex: 1;
+  padding: 0 20rpx 0 28rpx;
+  min-width: 0;
+}
+
+.cp-name {
+  font-size: 29rpx;
+  font-weight: 600;
+}
+
+.cp-desc {
+  margin-top: 10rpx;
+  font-size: 22rpx;
+  color: #62626e;
+  line-height: 34rpx;
+}
+
+.cp-expire {
+  margin-top: 10rpx;
+  font-size: 21rpx;
+  color: #9c9ca6;
+}
+
+.cp-btn {
+  flex: none;
+  font-size: 24rpx;
+  font-weight: 600;
+  color: #fff;
+  background: linear-gradient(96deg, #ff5c7a, #ff3355);
+  border-radius: 999rpx;
+  padding: 14rpx 30rpx;
+  box-shadow: 0 8rpx 18rpx rgba(255, 51, 85, 0.2);
+}
+
+.cp-btn.done {
+  color: #9c9ca6;
+  background: #f4f4f7;
+  box-shadow: none;
+}

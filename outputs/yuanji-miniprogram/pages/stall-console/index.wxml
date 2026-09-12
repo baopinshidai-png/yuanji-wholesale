@@ -1,0 +1,171 @@
+<view class="page sc-page">
+  <view class="sc-head" style="padding-top:{{statusBarHeight}}px">
+    <view class="sc-nav" style="height:{{navBarHeight}}px">
+      <view class="back" bindtap="back">‹</view>
+      <view class="sc-nav-title">{{logged ? stall.name + ' · 工作台' : '档口工作台'}}</view>
+      <view class="sc-logout" wx:if="{{logged}}" bindtap="logout">退出</view>
+    </view>
+  </view>
+
+  <!-- 未登录：输入邀请码 -->
+  <block wx:if="{{!logged}}">
+    <view class="sc-login">
+      <view class="sc-login-title">用邀请码进入</view>
+      <view class="sc-login-sub">邀请码由平台运营发给合作档口，用于接单发货与商品管理</view>
+      <view class="sc-input">
+        <input value="{{code}}" placeholder="请输入档口邀请码，如 S1-1234" bindinput="onCode" />
+      </view>
+      <view class="btn-primary sc-btn {{loading ? 'off' : ''}}" bindtap="login">{{loading ? '进入中…' : '进入工作台'}}</view>
+      <view class="sc-tip">还没有邀请码？联系平台运营开通档口合作。</view>
+    </view>
+  </block>
+
+  <!-- 已登录：工作台 -->
+  <block wx:else>
+    <view class="card sc-stats" wx:if="{{stats}}">
+      <view class="sc-stat">
+        <text class="n">{{stats.todayOrders}}</text>
+        <text class="t">今日订单</text>
+      </view>
+      <view class="sc-stat">
+        <text class="n">¥{{stats.todayAmount}}</text>
+        <text class="t">今日货款</text>
+      </view>
+      <view class="sc-stat">
+        <text class="n">{{stats.unship}}</text>
+        <text class="t">待发货</text>
+      </view>
+      <view class="sc-stat">
+        <text class="n">¥{{stats.settledAmount}}</text>
+        <text class="t">已分账</text>
+      </view>
+    </view>
+
+    <view class="sc-settle" bindtap="goProfile">
+      <text class="k">结算与资质</text>
+      <text class="v {{profileStatus}}">{{profileStatusText}}</text>
+      <text class="arrow">›</text>
+    </view>
+
+    <view class="sc-tabs">
+      <view class="sc-tab {{tab === item.key ? 'on' : ''}}" wx:for="{{tabs}}" wx:key="key" data-k="{{item.key}}" bindtap="setTab">{{item.label}}</view>
+      <view class="sc-tab goods {{showGoods ? 'on' : ''}}" bindtap="toggleGoodsPanel">商品</view>
+      <view class="sc-tab goods {{showSettle ? 'on' : ''}}" bindtap="showSettlements">结算</view>
+      <view class="sc-tab goods {{showAfter ? 'on' : ''}}" bindtap="showAftersales">售后</view>
+    </view>
+
+    <block wx:if="{{showAfter}}">
+      <view class="card" wx:for="{{aftersales}}" wx:key="id">
+        <view class="row-between">
+          <text class="muted">售后单 {{item.id}}</text>
+          <text class="sc-status">{{item.statusText}}</text>
+        </view>
+        <view class="sc-addr">订单 {{item.orderId}}　类型：{{item.type}}　金额：¥{{item.amount}}</view>
+        <view class="sc-addr">原因：{{item.reason}}</view>
+        <view class="as-imgs" wx:if="{{item.images.length}}">
+          <image wx:for="{{item.images}}" wx:for-item="img" wx:key="*this" src="{{img}}" mode="aspectFill" />
+        </view>
+        <view class="sc-addr" wx:if="{{item.returnLogistics}}">退货运单：{{item.returnLogistics}}</view>
+        <view class="sc-actions" wx:if="{{item.status === 'pending'}}">
+          <view class="btn-mini ghost" data-id="{{item.id}}" data-agree="false" catchtap="handleAfter">拒绝</view>
+          <view class="btn-mini" data-id="{{item.id}}" data-agree="true" catchtap="handleAfter">同意并退款</view>
+        </view>
+        <view class="sc-actions" wx:elif="{{item.status === 'returning'}}">
+          <view class="btn-mini" data-id="{{item.id}}" catchtap="confirmReceived">确认收货并退款</view>
+        </view>
+      </view>
+      <view class="empty" wx:if="{{!aftersales.length}}">
+        <image class="empty-img" src="/images/icons/service.png" />
+        <text class="t">暂无售后申请</text>
+        <text class="s">买家提交售后后会出现在这里</text>
+      </view>
+    </block>
+
+    <block wx:elif="{{showSettle}}">
+      <block wx:if="{{settle}}">
+        <view class="card sc-settle-sum">
+          <view class="sc-stat"><text class="n">¥{{settle.totals.settled}}</text><text class="t">已分账</text></view>
+          <view class="sc-stat"><text class="n">¥{{settle.totals.hold}}</text><text class="t">挂账中</text></view>
+          <view class="sc-stat"><text class="n">¥{{settle.totals.returned}}</text><text class="t">已回退</text></view>
+          <view class="sc-stat"><text class="n">{{settle.totals.count}}</text><text class="t">结算单数</text></view>
+        </view>
+        <view class="card" wx:for="{{settle.rows}}" wx:key="orderId">
+          <view class="row-between">
+            <text class="muted">订单号 {{item.orderId}}</text>
+            <text class="sc-status">{{item.status === 'success' ? '已分账' : item.status === 'hold' ? '挂账中' : item.status === 'returned' ? '已回退' : item.status}}</text>
+          </view>
+          <view class="sc-addr">订单实付 ¥{{item.orderPayable}}　档口货款 <text class="hl">¥{{item.amount}}</text>　平台佣金 ¥{{item.platformFee}}</view>
+          <view class="sc-addr" wx:if="{{item.reason}}">说明：{{item.reason}}</view>
+          <view class="sc-addr" wx:if="{{item.settledAt}}">结算时间：{{item.settledAt}}</view>
+        </view>
+        <view class="empty" wx:if="{{!settle.rows.length}}">
+          <image class="empty-img" src="/images/icons/box.png" />
+          <text class="t">还没有结算记录</text>
+          <text class="s">买家付款后会自动按分账结算</text>
+        </view>
+      </block>
+      <view class="empty" wx:else>
+        <text class="t">加载中…</text>
+      </view>
+    </block>
+
+    <block wx:elif="{{!showGoods}}">
+      <block wx:if="{{orders.length}}">
+        <view class="card" wx:for="{{orders}}" wx:key="id">
+          <view class="row-between">
+            <text class="muted">订单号 {{item.id}}</text>
+            <text class="sc-status">{{item.statusText}}</text>
+          </view>
+          <view class="sc-item" wx:for="{{item.items}}" wx:for-item="g" wx:key="goodsId">
+            <image src="{{g.imgUrl}}" mode="aspectFill" />
+            <view class="sc-item-body">
+              <view class="sc-item-title">{{g.title}}</view>
+              <view class="muted">{{g.color}} / {{g.size}}　x{{g.qty}}</view>
+              <view class="sc-item-price"><text class="price"><text class="rmb">¥</text>{{g.price}}</text></view>
+            </view>
+          </view>
+          <view class="sc-addr" wx:if="{{item.address}}">收货：{{item.address.name}} {{item.address.phone}}　{{item.address.region}}{{item.address.detail}}</view>
+          <view class="sc-addr" wx:if="{{item.remark}}">备注：{{item.remark}}</view>
+          <view class="sc-addr" wx:if="{{item.logistics}}">运单号：{{item.logistics}}</view>
+          <view class="sc-actions">
+            <view class="sc-sum">共 {{item.count}} 件　实付 ¥{{item.payable}}</view>
+            <view class="btn-mini" wx:if="{{item.status === 'unship'}}" data-id="{{item.id}}" catchtap="ship">发货</view>
+          </view>
+        </view>
+      </block>
+      <view class="empty" wx:else>
+        <image class="empty-img" src="/images/icons/box.png" />
+        <text class="t">暂无订单</text>
+        <text class="s">买家下单支付后会出现在这里</text>
+      </view>
+    </block>
+
+    <block wx:else>
+      <view class="sc-add" bindtap="addGoods">
+        <text class="plus">＋</text>
+        <text>上架新商品</text>
+      </view>
+      <view class="card" wx:for="{{goods}}" wx:key="id">
+        <view class="sc-goods">
+          <image src="{{item.imgUrl}}" mode="aspectFill" />
+          <view class="sc-goods-body">
+            <view class="sc-item-title">{{item.title}}</view>
+            <view class="muted">拿货价 ¥{{item.price}} · 建议零售价 ¥{{item.suggestPrice}}</view>
+            <view class="muted">已拼 {{item.joined}} 件 · {{item.off ? '已下架' : '在架'}}</view>
+            <view class="muted">库存 {{item.stock}} 件 · {{item.imgCount}} 张图</view>
+          </view>
+          <view class="btn-mini {{item.off ? '' : 'ghost'}}" data-id="{{item.id}}" data-off="{{item.off}}" catchtap="toggleGoods">
+            {{item.off ? '上架' : '下架'}}
+          </view>
+          <view class="sc-edit" wx:if="{{item.uploaded}}" data-id="{{item.id}}" catchtap="editGoods">改</view>
+          <view class="sc-edit" wx:if="{{item.uploaded}}" data-id="{{item.id}}" catchtap="removeGoods">删</view>
+        </view>
+      </view>
+      <view class="empty" wx:if="{{!goods.length}}">
+        <image class="empty-img" src="/images/icons/shop.png" />
+        <text class="t">还没有商品</text>
+        <text class="s">商品由平台代上架，后续开放档口自助上架</text>
+      </view>
+    </block>
+  </block>
+</view>

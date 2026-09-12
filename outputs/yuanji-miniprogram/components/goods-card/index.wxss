@@ -1,0 +1,151 @@
+.gcard {
+  background: #fff;
+  border-radius: 20rpx;
+  overflow: hidden;
+  box-shadow: 0 2rpx 12rpx rgba(17, 17, 30, 0.05);
+}
+
+.thumb {
+  position: relative;
+  width: 100%;
+  height: 440rpx;
+  background: #f4f4f6;
+}
+
+.img {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.badge-new {
+  position: absolute;
+  left: 0;
+  top: 0;
+  background: linear-gradient(96deg, #ff5c7a, #ff3355);
+  color: #fff;
+  font-size: 20rpx;
+  font-weight: 500;
+  padding: 8rpx 14rpx;
+  border-bottom-right-radius: 14rpx;
+}
+
+.badge-video {
+  position: absolute;
+  left: 14rpx;
+  bottom: 14rpx;
+  background: rgba(17, 17, 24, 0.55);
+  color: #fff;
+  font-size: 20rpx;
+  padding: 6rpx 12rpx;
+  border-radius: 8rpx;
+}
+
+.badge-ship {
+  position: absolute;
+  right: 14rpx;
+  bottom: 14rpx;
+  background: rgba(15, 184, 122, 0.95);
+  color: #fff;
+  font-size: 20rpx;
+  padding: 6rpx 12rpx;
+  border-radius: 8rpx;
+}
+
+.fav {
+  position: absolute;
+  right: 12rpx;
+  top: 12rpx;
+  width: 52rpx;
+  height: 52rpx;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.9);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.fav .icon-img {
+  width: 30rpx;
+  height: 30rpx;
+}
+
+.body {
+  padding: 18rpx 18rpx 20rpx;
+}
+
+.title {
+  font-size: 27rpx;
+  line-height: 38rpx;
+  color: #17171c;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+  height: 76rpx;
+}
+
+.stall {
+  margin-top: 12rpx;
+  display: flex;
+  align-items: center;
+  font-size: 21rpx;
+  color: #9c9ca6;
+}
+
+.stall-left {
+  display: flex;
+  align-items: center;
+  min-width: 0;
+}
+
+.stall .market {
+  color: #62626e;
+}
+
+.stall .ship-tag {
+  margin-left: 10rpx;
+  color: #ff3355;
+  background: #fff0f3;
+  border-radius: 6rpx;
+  padding: 2rpx 8rpx;
+  font-size: 19rpx;
+}
+
+.price-row {
+  margin-top: 14rpx;
+  display: flex;
+  align-items: baseline;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.price {
+  color: #ff2f4f;
+  font-size: 36rpx;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.price .rmb {
+  font-size: 22rpx;
+  margin-right: 1rpx;
+}
+
+.plabel {
+  font-size: 19rpx;
+  color: #ff2f4f;
+  background: #fff0f3;
+  border-radius: 6rpx;
+  padding: 3rpx 8rpx;
+  margin-left: 8rpx;
+  flex: none;
+}
+
+.joined {
+  margin-left: auto;
+  font-size: 19rpx;
+  color: #9c9ca6;
+  flex: none;
+  padding-left: 8rpx;
+}

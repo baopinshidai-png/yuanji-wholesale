@@ -1,0 +1,173 @@
+<view class="page">
+  <!-- 顶部：品牌 + 搜索 -->
+  <view class="topbar" style="padding-top:{{statusBarHeight}}px">
+    <view class="topbar-row" style="height:{{navBarHeight}}px">
+      <view class="brand">源集<text class="brand-sub">源头档口批发</text></view>
+    </view>
+    <view class="search-row">
+      <view class="searchbar" bindtap="goSearch">
+        <image class="icon-img sm" src="/images/icons/search.png" />
+        <text class="ph">找好货、找档口</text>
+        <view class="scan">
+          <image class="icon-img sm" src="/images/icons/camera.png" />
+          <text>图搜</text>
+        </view>
+      </view>
+      <view class="msg" bindtap="goMessage">
+        <image class="icon-img" src="/images/icons/bell.png" />
+      </view>
+    </view>
+  </view>
+
+  <!-- 新人礼包 -->
+  <scroll-view class="cp-strip" scroll-x wx:if="{{campaigns.length}}">
+    <view class="cp-card" wx:for="{{campaigns}}" wx:key="id" data-link="{{item.link}}" bindtap="goCampaign">
+      <image wx:if="{{item.image}}" src="{{item.image}}" mode="aspectFill" />
+      <view class="cp-body">
+        <view class="cp-title">{{item.title}}</view>
+        <view class="cp-sub">{{item.subtitle}}</view>
+      </view>
+    </view>
+  </scroll-view>
+
+  <view class="gift">
+    <view class="gift-head">
+      <text class="gift-title">新人 60 元礼包</text>
+      <text class="gift-sub">包邮 + 退货卡价值超 30 元</text>
+      <text class="gift-all" bindtap="goCoupons">全部 ›</text>
+    </view>
+    <view class="gift-row">
+      <view class="gift-item">
+        <text class="gift-amount">¥30</text>
+        <text class="gift-desc">满 3.99 立减</text>
+        <text class="gift-btn">领取</text>
+      </view>
+      <view class="gift-item">
+        <text class="gift-amount">包邮</text>
+        <text class="gift-desc">满 899 可用</text>
+        <text class="gift-btn">领取</text>
+      </view>
+      <view class="gift-item">
+        <text class="gift-amount">退货卡</text>
+        <text class="gift-desc">满额 3 倍可用</text>
+        <text class="gift-btn">领取</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 三张榜单 -->
+  <view class="boards">
+    <view class="board" data-key="new" bindtap="goCard">
+      <image src="/images/goods/g1.jpg" mode="aspectFill" />
+      <view class="board-mask"></view>
+      <view class="board-txt">
+        <text class="board-title">好评档口榜</text>
+        <text class="board-sub">高评分店铺</text>
+      </view>
+    </view>
+    <view class="board" data-key="sale" bindtap="goCard">
+      <image src="/images/goods/g8.jpg" mode="aspectFill" />
+      <view class="board-mask"></view>
+      <view class="board-txt">
+        <text class="board-title">最好卖的款</text>
+        <text class="board-sub">今日已拼 9.4 万件</text>
+      </view>
+    </view>
+    <view class="board" data-key="stock" bindtap="goCard">
+      <image src="/images/goods/g16.jpg" mode="aspectFill" />
+      <view class="board-mask"></view>
+      <view class="board-txt">
+        <text class="board-title">性价比首选</text>
+        <text class="board-sub">数量不踩雷</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 市场金刚区 -->
+  <scroll-view class="markets" scroll-x enable-flex>
+    <view class="market-item" wx:for="{{markets}}" wx:key="id" data-m="{{item.name}}" bindtap="goMarket">
+      <view class="bubble">{{item.name}}</view>
+      <view class="m-name">{{item.name}}</view>
+    </view>
+    <view class="market-item">
+      <view class="bubble more">全部</view>
+      <view class="m-name">全部市场</view>
+    </view>
+  </scroll-view>
+
+  <!-- 运营卡 -->
+  <view class="cards">
+    <view class="op-card big" data-key="new" bindtap="goCard">
+      <view class="op-tag">每日上新</view>
+      <view class="op-title">今日新款</view>
+      <view class="op-sub">4000+ 款上新</view>
+      <view class="op-imgs">
+        <image src="/images/goods/g10.jpg" mode="aspectFill" />
+        <image src="/images/goods/g6.jpg" mode="aspectFill" />
+      </view>
+    </view>
+    <view class="op-col">
+      <view class="op-card row" data-key="sale" bindtap="goCard">
+        <view class="op-txt">
+          <view class="op-title">今日特卖</view>
+          <view class="op-sub">夏末最后一波</view>
+        </view>
+        <image class="op-thumb" src="/images/goods/g12.jpg" mode="aspectFill" />
+      </view>
+      <view class="op-card row" data-key="stock" bindtap="goCard">
+        <view class="op-txt">
+          <view class="op-title">档口现货</view>
+          <view class="op-sub">秋上新 免排单</view>
+        </view>
+        <image class="op-thumb" src="/images/goods/g14.jpg" mode="aspectFill" />
+      </view>
+    </view>
+  </view>
+
+  <!-- 市场筛选 -->
+  <scroll-view class="chips" scroll-x>
+    <view
+      class="chip {{activeFilter === item ? 'on' : ''}}"
+      wx:for="{{filters}}"
+      wx:key="*this"
+      data-f="{{item}}"
+      bindtap="onFilter"
+    >{{item}}</view>
+  </scroll-view>
+
+  <!-- 大牌联合上新 -->
+  <view class="brand-card">
+    <view class="sec-head">
+      <text class="sec-title">大牌联合上新</text>
+      <text class="brand-tip">最高省 ¥388</text>
+      <text class="sec-more" bindtap="goList">去专场 ›</text>
+    </view>
+    <scroll-view class="brand-scroll" scroll-x>
+      <view class="brand-item" wx:for="{{bigBrand}}" wx:key="id" bindtap="goList">
+        <image src="{{item.imgUrl}}" mode="aspectFill" />
+        <view class="brand-price">¥{{item.suggestPrice}}</view>
+        <view class="brand-label">建议零售价</view>
+      </view>
+    </scroll-view>
+    <view class="brand-note">韩标货 · 杭州原创 · 本季销冠</view>
+  </view>
+
+  <!-- 商品流 -->
+  <view class="feed-head">
+    <text class="sec-title">源头好货</text>
+    <text class="sec-more">每日 6000+ 新款</text>
+  </view>
+  <view class="ggrid">
+    <view class="cell" wx:for="{{goods}}" wx:key="id">
+      <goods-card goods="{{item}}" />
+    </view>
+  </view>
+
+  <!-- 价格闸门提示条 -->
+  <view class="fixed-bar" wx:if="{{!certified}}">
+    <view class="login-bar">
+      <text class="tip">登录注册，完成认证可看拿货价</text>
+      <view class="go" bindtap="goLogin">立即登录</view>
+    </view>
+  </view>
+</view>

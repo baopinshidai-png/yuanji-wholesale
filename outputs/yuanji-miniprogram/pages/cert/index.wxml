@@ -1,0 +1,53 @@
+<view class="page cert-page">
+  <view class="ct-head">
+    <view class="ct-title">店主认证</view>
+    <view class="ct-sub">认证通过后才能查看拿货价（批发价）</view>
+  </view>
+
+  <view class="card">
+    <view class="f-row">
+      <text class="f-label">店铺名称</text>
+      <input placeholder="如：小美女装店" value="{{shop}}" bindinput="onShop" />
+    </view>
+    <view class="f-row">
+      <text class="f-label">经营类型</text>
+      <picker mode="selector" range="{{types}}" value="{{typeIndex}}" bindchange="onType">
+        <view class="f-picker">{{types[typeIndex]}} ›</view>
+      </picker>
+    </view>
+    <view class="f-row">
+      <text class="f-label">主营类目</text>
+      <picker mode="selector" range="{{cats}}" value="{{catIndex}}" bindchange="onCat">
+        <view class="f-picker">{{cats[catIndex]}} ›</view>
+      </picker>
+    </view>
+    <view class="f-row">
+      <text class="f-label">所在城市</text>
+      <input placeholder="如：浙江 杭州" value="{{city}}" bindinput="onCity" />
+    </view>
+    <view class="f-row">
+      <text class="f-label">联系电话</text>
+      <input type="number" placeholder="用于客服与售后" value="{{phone}}" bindinput="onPhone" />
+    </view>
+    <view class="f-row">
+      <text class="f-label">资质凭证</text>
+      <view class="f-upload" bindtap="upload">＋ 上传门店照片 / 营业执照</view>
+    </view>
+  </view>
+
+  <view class="card">
+    <view class="row-title">认证后可用</view>
+    <view class="right-item" wx:for="{{['查看拿货价（批发价）', '一件起批、单款单色打包价', '现货24H发货 / 慢必赔', '按档口阶梯满减', '售后与退货权益']}}" wx:key="*this">✓ {{item}}</view>
+  </view>
+
+  <view class="card">
+    <view class="row-title">认证须知</view>
+    <view class="ct-note">平台仅面向服装从业者提供批发价，拒绝散客；提交信息仅用于身份核验与售后联系。</view>
+    <view class="ct-agree" bindtap="toggleAgree">
+      <view class="cb {{agreed ? 'on' : ''}}">{{agreed ? '✓' : ''}}</view>
+      <text>我已阅读并同意<text class="ct-link" catchtap="goDoc" data-type="cert">《店主认证须知》</text></text>
+    </view>
+  </view>
+
+  <view class="ct-btn btn-primary" bindtap="submit">提交认证</view>
+</view>

@@ -1,0 +1,103 @@
+.topbar {
+  background: #fff;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.topbar-row {
+  display: flex;
+  align-items: center;
+  /* 右侧留出微信胶囊按钮的位置 */
+  padding: 0 190rpx 0 20rpx;
+}
+
+.back {
+  width: 60rpx;
+  font-size: 44rpx;
+  line-height: 1;
+}
+
+.countdown {
+  margin: 0 auto;
+  font-size: 24rpx;
+  color: #62626e;
+}
+
+.cd-num {
+  display: inline-block;
+  margin-left: 6rpx;
+  font-size: 24rpx;
+  font-weight: 700;
+  color: #fff;
+  background: #17171c;
+  border-radius: 8rpx;
+  padding: 4rpx 12rpx;
+  letter-spacing: 1rpx;
+}
+
+.cart {
+  width: 60rpx;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.search-wrap {
+  padding: 0 24rpx 20rpx;
+}
+
+.searchbar .ph {
+  color: #9c9ca6;
+}
+
+.banner {
+  margin: 8rpx 24rpx 0;
+  background: #17171c;
+  border-radius: 24rpx;
+  padding: 28rpx 24rpx;
+}
+
+.banner-title {
+  font-size: 36rpx;
+  font-weight: 700;
+  color: #fff;
+}
+
+.banner-brands {
+  margin-top: 14rpx;
+  font-size: 22rpx;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.banner-brands text {
+  margin-right: 20rpx;
+}
+
+.sortbar {
+  display: flex;
+  align-items: center;
+  background: #fff;
+  margin: 20rpx 24rpx 0;
+  border-radius: 999rpx;
+  padding: 8rpx 12rpx;
+  box-shadow: 0 2rpx 14rpx rgba(17, 17, 30, 0.05);
+}
+
+.sort {
+  flex: none;
+  font-size: 26rpx;
+  color: #62626e;
+  padding: 14rpx 26rpx;
+  border-radius: 999rpx;
+}
+
+.sort.on {
+  color: #ff3355;
+  font-weight: 700;
+  background: #fff0f3;
+}
+
+.sort.filter {
+  margin-left: auto;
+  color: #62626e;
+}

@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="400" height="400">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#f8f3ee"/>
+      <stop offset="1" stop-color="#ebdfd3"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="0.5" cy="0.35" r="0.75">
+      <stop offset="0" stop-color="#ffffff" stop-opacity="0.75"/>
+      <stop offset="1" stop-color="#ffffff" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="400" height="400" fill="url(#bg)"/>
+  <rect width="400" height="400" fill="url(#glow)"/>
+  <ellipse cx="200" cy="336" rx="98" ry="15" fill="#000" opacity="0.05"/>
+<g fill="#b79b83" stroke="#93795f" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"><path d="M152 120 L106 148 L92 322 L152 334 L154 196 L200 242 L246 196 L248 334 L308 322 L294 148 L248 120 L200 166 Z"/>
+       <path d="M152 120 L200 166 L248 120 L232 108 L200 136 L168 108 Z" fill="#93795f" stroke="none"/>
+       <circle cx="176" cy="250" r="5" fill="#93795f" stroke="none"/>
+       <circle cx="176" cy="292" r="5" fill="#93795f" stroke="none"/>
+       <path d="M128 190 L128 320 M272 190 L272 320" fill="none" stroke-width="2" opacity="0.3"/></g>
+</svg>

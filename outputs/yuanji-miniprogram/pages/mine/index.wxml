@@ -1,0 +1,113 @@
+<view class="page">
+  <view class="m-top" style="padding-top:{{statusBarHeight}}px">
+    <view class="m-head" style="height:{{navBarHeight}}px">
+      <text class="m-setting" bindtap="notReady">设置</text>
+    </view>
+    <view class="m-profile">
+      <view class="m-avatar">
+        <image wx:if="{{!user}}" class="icon-img lg" src="/images/icons/user.png" />
+        <text wx:else>{{user.nick[0]}}</text>
+      </view>
+      <view class="m-info">
+        <view class="m-name" bindtap="{{user ? '' : 'goLogin'}}">{{user ? user.nick : '登录 / 注册'}}</view>
+        <view class="m-sub">{{certified ? '认证店主 · 已解锁拿货价' : (user ? '未认证：暂只显示建议零售价' : '登录后可同步进货车与订单')}}</view>
+      </view>
+      <view class="m-cert" wx:if="{{user && !certified}}" bindtap="goCert">去认证</view>
+      <view class="m-cert done" wx:if="{{certified}}">已认证</view>
+    </view>
+  </view>
+
+  <view class="card m-quick">
+    <view class="m-quick-item" bindtap="goSubs">
+      <image class="icon-img lg" src="/images/icons/shop.png" />
+      <text class="n">{{subsCount}}</text>
+      <text class="t">订阅档口</text>
+    </view>
+    <view class="m-quick-item" bindtap="goFavorites">
+      <image class="icon-img lg" src="/images/icons/heart.png" />
+      <text class="n">{{favCount}}</text>
+      <text class="t">收藏商品</text>
+    </view>
+    <view class="m-quick-item" bindtap="notReady">
+      <image class="icon-img lg" src="/images/icons/clock.png" />
+      <text class="n">--</text>
+      <text class="t">足迹</text>
+    </view>
+  </view>
+
+  <view class="card">
+    <view class="row-between">
+      <text class="row-title">我的订单</text>
+      <text class="muted" bindtap="goOrders">查看全部 ›</text>
+    </view>
+    <view class="m-grid4">
+      <view class="m-grid-item" wx:for="{{orders}}" wx:key="key" data-k="{{item.key}}" bindtap="goOrdersBy">
+        <image class="icon-img lg" src="{{item.icon}}" />
+        <text class="t">{{item.label}}</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="card">
+    <text class="row-title">我的资产</text>
+    <view class="m-grid3">
+      <view class="m-grid-item" wx:for="{{assets}}" wx:key="key" bindtap="notReady">
+        <text class="num">--</text>
+        <text class="t">{{item.label}}</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="m-act-row">
+    <view class="m-act-item" bindtap="notReady">
+      <text class="a-title">发现宝藏档口</text>
+      <text class="a-sub">2026 全国精选档口</text>
+    </view>
+    <view class="m-act-item pink" bindtap="notReady">
+      <text class="a-title">店主福利社群</text>
+      <text class="a-sub">运费券 / 红包活动</text>
+    </view>
+  </view>
+
+  <view class="card">
+    <text class="row-title">我的服务</text>
+    <view class="m-srv" bindtap="goAddress">
+      <text>收货地址</text>
+      <text class="arrow">›</text>
+    </view>
+    <view class="m-srv" bindtap="goCoupons">
+      <text>红包 / 卡券</text>
+      <text class="arrow">›</text>
+    </view>
+    <view class="m-srv" bindtap="goMaterial">
+      <text>素材中心（一键下载商品图）</text>
+      <text class="arrow">›</text>
+    </view>
+    <view class="m-srv" bindtap="goStallConsole">
+      <text>档口工作台（商家端）</text>
+      <text class="arrow">›</text>
+    </view>
+    <view class="m-srv" bindtap="goAftersales">
+      <text>售后进度</text>
+      <text class="arrow">›</text>
+    </view>
+    <view class="m-srv" bindtap="goDoc" data-type="terms">
+      <text>用户服务协议</text>
+      <text class="arrow">›</text>
+    </view>
+    <view class="m-srv" bindtap="goDoc" data-type="privacy">
+      <text>隐私政策</text>
+      <text class="arrow">›</text>
+    </view>
+    <button class="m-srv m-srv-btn" open-type="contact">
+      <text>联系客服</text>
+      <text class="arrow">›</text>
+    </button>
+    <view class="m-srv" wx:for="{{services}}" wx:key="*this" bindtap="notReady">
+      <text>{{item}}</text>
+      <text class="arrow">›</text>
+    </view>
+  </view>
+
+  <view class="m-logout" wx:if="{{user}}" bindtap="logout">退出登录</view>
+</view>

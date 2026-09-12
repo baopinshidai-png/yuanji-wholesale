@@ -1,0 +1,67 @@
+<view class="page ck">
+  <view class="nav" style="padding-top:{{statusBarHeight}}px">
+    <view class="nav-inner" style="height:{{navBarHeight}}px">
+      <view class="nav-back" bindtap="back">‹</view>
+      确认订单
+    </view>
+  </view>
+
+  <view class="card addr" bindtap="pickAddress">
+    <image class="addr-icon" src="/images/icons/location-brand.png" />
+    <view class="addr-body">
+      <view class="addr-line">
+        <text class="addr-name">{{address.name}}</text>
+        <text class="addr-phone">{{address.phone}}</text>
+        <text class="addr-tag" wx:if="{{address.isDefault}}">默认</text>
+      </view>
+      <view class="addr-detail">{{address.region}} {{address.detail}}</view>
+    </view>
+    <text class="addr-arrow">›</text>
+  </view>
+
+  <view class="card">
+    <text class="row-title">商品清单</text>
+    <view class="ck-item" wx:for="{{items}}" wx:key="goodsId">
+      <image src="{{item.imgUrl}}" mode="aspectFill" />
+      <view class="ck-body">
+        <view class="ck-name">{{item.title}}</view>
+        <view class="muted">{{item.color}} / {{item.size}} · {{item.stallName}}</view>
+        <view class="ck-price">
+          <text class="price"><text class="rmb">¥</text>{{item.price}}</text>
+          <text class="muted">x{{item.qty}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class="card">
+    <view class="row-between" bindtap="toggleDetail">
+      <text class="row-title">优惠明细</text>
+      <text class="muted">{{showDetail ? '收起' : '更多 ›'}}</text>
+    </view>
+    <view class="amt"><text>商品总价</text><text>¥{{total}}</text></view>
+    <view class="amt"><text>共计优惠（档口阶梯满减）</text><text class="minus">-¥{{discount}}</text></view>
+    <view class="amt"><text>运费</text><text>平台包邮</text></view>
+    <view class="amt strong"><text>应付合计</text><text>¥{{payable}}</text></view>
+    <view class="ck-note">合计金额不含红包、优惠券；按档口拆单发货</view>
+  </view>
+
+  <view class="card">
+    <view class="f-row">
+      <text class="f-label">订单备注</text>
+      <input placeholder="给档口的要求，如颜色备注" value="{{remark}}" bindinput="onRemark" />
+    </view>
+    <view class="f-row">
+      <text class="f-label">支付方式</text>
+      <text class="f-value">微信支付</text>
+    </view>
+  </view>
+
+  <view class="fixed-bar ck-bar">
+    <view class="ck-total">
+      <text class="ck-total-label">实付</text>
+      <text class="price"><text class="rmb">¥</text>{{payable}}</text>
+    </view>
+    <view class="ck-btn" bindtap="submit">提交订单</view>
+  </view>
+</view>

@@ -1,0 +1,11 @@
+{
+  "name": "yuanji-work-tools",
+  "private": true,
+  "type": "module",
+  "description": "源集小程序项目的本地校验/截图脚本依赖（不参与小程序打包）",
+  "dependencies": {
+    "miniprogram-automator": "^0.12.1",
+    "pngjs": "^7.0.0",
+    "sharp": "^0.35.4"
+  }
+}

@@ -1,0 +1,54 @@
+<view class="page af-page">
+  <view class="af-head" style="padding-top:{{statusBarHeight}}px">
+    <view class="af-nav" style="height:{{navBarHeight}}px">
+      <view class="back" bindtap="back">‹</view>
+      <view class="af-nav-title">申请售后</view>
+    </view>
+  </view>
+
+  <view class="card" wx:if="{{order}}">
+    <view class="af-goods">
+      <image src="{{order.items[0].imgUrl}}" mode="aspectFill" />
+      <view class="af-goods-body">
+        <view class="af-title">{{order.items[0].title}}</view>
+        <view class="muted">订单号 {{order.id}} · 实付 ¥{{order.payable}}</view>
+      </view>
+    </view>
+  </view>
+
+  <view class="card">
+    <view class="f-row">
+      <text class="f-label">售后类型</text>
+      <picker mode="selector" range="{{types}}" value="{{typeIndex}}" bindchange="onType">
+        <view class="f-picker">{{types[typeIndex]}} ›</view>
+      </picker>
+    </view>
+    <view class="f-row">
+      <text class="f-label">退款金额</text>
+      <input type="digit" placeholder="默认整单实付" value="{{amount}}" bindinput="onAmount" />
+    </view>
+    <view class="f-row column">
+      <text class="f-label">售后原因</text>
+      <textarea class="af-textarea" placeholder="请描述问题，例如：收到货发现袖口有跳线" value="{{reason}}" bindinput="onReason" maxlength="200" />
+    </view>
+    <view class="f-row column">
+      <text class="f-label">凭证图片（选填，最多 3 张）</text>
+      <view class="af-imgs">
+        <view class="af-img" wx:for="{{images}}" wx:key="*this">
+          <image src="{{item}}" mode="aspectFill" />
+          <view class="af-img-del" data-i="{{index}}" catchtap="removeImage">✕</view>
+        </view>
+        <view class="af-upload" bindtap="chooseImages" wx:if="{{images.length < 3}}">
+          <text class="plus">＋</text>
+          <text class="tip">{{uploading ? '上传中…' : '添加'}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class="af-tip">提交后先由档口处理；档口拒绝或不处理，可以申请平台介入仲裁。</view>
+
+  <view class="fixed-bar af-bar">
+    <view class="btn-primary af-btn {{submitting ? 'off' : ''}}" bindtap="submit">{{submitting ? '提交中…' : '提交售后申请'}}</view>
+  </view>
+</view>

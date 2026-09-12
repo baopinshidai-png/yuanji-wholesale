@@ -1,0 +1,168 @@
+.page {
+  padding-bottom: 60rpx;
+}
+
+.s-head {
+  background: #fff;
+  padding: 0 24rpx 20rpx;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.s-row {
+  display: flex;
+  align-items: center;
+}
+
+.s-back {
+  width: 56rpx;
+  font-size: 44rpx;
+  line-height: 1;
+}
+
+.s-input {
+  flex: 1;
+  height: 76rpx;
+  background: #f4f4f7;
+  border-radius: 999rpx;
+  display: flex;
+  align-items: center;
+  padding: 0 24rpx;
+}
+
+.s-input input {
+  flex: 1;
+  font-size: 27rpx;
+  margin-left: 12rpx;
+}
+
+.s-scan {
+  display: flex;
+  align-items: center;
+}
+
+.s-home {
+  width: 76rpx;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.row-title {
+  font-size: 29rpx;
+  font-weight: 600;
+}
+
+.chips {
+  padding: 16rpx 0 0;
+}
+
+.card .chips {
+  white-space: normal;
+}
+
+.card .chip {
+  margin-bottom: 16rpx;
+  box-shadow: none;
+  background: #f4f4f7;
+}
+
+.card .chip.hot {
+  color: #ff3355;
+  background: #fff0f3;
+}
+
+.sortbar {
+  display: flex;
+  align-items: center;
+  background: #fff;
+  margin: 20rpx 24rpx 0;
+  border-radius: 999rpx;
+  padding: 8rpx 12rpx;
+  box-shadow: 0 2rpx 14rpx rgba(17, 17, 30, 0.05);
+}
+
+.sort {
+  flex: none;
+  font-size: 26rpx;
+  color: #62626e;
+  padding: 14rpx 26rpx;
+  border-radius: 999rpx;
+}
+
+.sort.on {
+  color: #ff3355;
+  font-weight: 700;
+  background: #fff0f3;
+}
+
+.sort.filter {
+  margin-left: auto;
+}
+
+.s-count {
+  padding: 20rpx 24rpx 0;
+  font-size: 24rpx;
+  color: #9c9ca6;
+}
+
+/* ---------- 筛选抽屉 ---------- */
+.mask {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background: rgba(17, 17, 24, 0.45);
+  z-index: 40;
+}
+
+.drawer {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  max-height: 78vh;
+  overflow-y: auto;
+  z-index: 50;
+  background: #fff;
+  border-radius: 28rpx 28rpx 0 0;
+  padding: 28rpx 24rpx calc(28rpx + env(safe-area-inset-bottom));
+}
+
+.d-title {
+  font-size: 32rpx;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 20rpx;
+}
+
+.d-label {
+  font-size: 26rpx;
+  color: #62626e;
+  margin: 20rpx 0 4rpx;
+}
+
+.drawer .chips {
+  white-space: normal;
+}
+
+.drawer .chip {
+  margin-bottom: 16rpx;
+  box-shadow: none;
+  background: #f4f4f7;
+}
+
+.d-foot {
+  display: flex;
+  margin-top: 20rpx;
+}
+
+.d-btn {
+  flex: 1;
+  margin-right: 20rpx;
+}
+
+.d-btn:last-child {
+  margin-right: 0;
+}

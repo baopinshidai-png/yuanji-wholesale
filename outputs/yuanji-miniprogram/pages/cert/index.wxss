@@ -1,0 +1,117 @@
+.cert-page {
+  padding-bottom: 200rpx;
+}
+
+.ct-head {
+  background: linear-gradient(180deg, #fff0f3, #f6f7f9);
+  padding: 48rpx 40rpx 40rpx;
+}
+
+.ct-title {
+  font-size: 44rpx;
+  font-weight: 700;
+}
+
+.ct-sub {
+  margin-top: 12rpx;
+  font-size: 24rpx;
+  color: #62626e;
+}
+
+.row-title {
+  font-size: 29rpx;
+  font-weight: 600;
+}
+
+.f-row {
+  display: flex;
+  align-items: center;
+  min-height: 96rpx;
+  border-bottom: 1rpx solid #eeeef2;
+}
+
+.f-row:last-child {
+  border-bottom: none;
+}
+
+.f-label {
+  width: 180rpx;
+  font-size: 27rpx;
+  color: #62626e;
+  flex: none;
+}
+
+.f-row input {
+  flex: 1;
+  font-size: 27rpx;
+}
+
+.f-row picker {
+  flex: 1;
+}
+
+.f-picker {
+  font-size: 27rpx;
+}
+
+.f-upload {
+  flex: 1;
+  text-align: center;
+  font-size: 25rpx;
+  color: #ff3355;
+  background: #fff0f3;
+  border-radius: 14rpx;
+  padding: 18rpx 0;
+}
+
+.right-item {
+  font-size: 25rpx;
+  color: #3f3f4a;
+  padding: 12rpx 0;
+}
+
+.ct-note {
+  margin-top: 12rpx;
+  font-size: 23rpx;
+  color: #62626e;
+  line-height: 36rpx;
+}
+
+.ct-agree {
+  display: flex;
+  align-items: center;
+  margin-top: 24rpx;
+  font-size: 24rpx;
+  color: #62626e;
+}
+
+.ct-link {
+  color: #ff3355;
+}
+
+.cb {
+  width: 34rpx;
+  height: 34rpx;
+  border-radius: 50%;
+  border: 2rpx solid #d8d8dd;
+  margin-right: 14rpx;
+  flex: none;
+  text-align: center;
+  line-height: 30rpx;
+  font-size: 22rpx;
+  color: transparent;
+}
+
+.cb.on {
+  background: #ff3355;
+  border-color: #ff3355;
+  color: #fff;
+}
+
+.ct-btn {
+  position: fixed;
+  left: 24rpx;
+  right: 24rpx;
+  bottom: calc(24rpx + env(safe-area-inset-bottom));
+  z-index: 10;
+}

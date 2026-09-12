@@ -1,0 +1,59 @@
+<view class="page sp-page">
+  <view class="sp-head" style="padding-top:{{statusBarHeight}}px">
+    <view class="sp-nav" style="height:{{navBarHeight}}px">
+      <view class="back" bindtap="back">‹</view>
+      <view class="sp-nav-title">结算与资质</view>
+    </view>
+  </view>
+
+  <view class="card sp-status {{status}}">
+    <view class="sp-status-row">
+      <text class="sp-status-text">{{statusText}}</text>
+      <text class="sp-status-tip">{{status === 'approved' ? '货款按分账结算' : '审核通过后货款才会分账到你的账户'}}</text>
+    </view>
+    <view class="sp-note" wx:if="{{reviewNote}}">驳回原因：{{reviewNote}}</view>
+  </view>
+
+  <view class="card">
+    <view class="sp-title">档口资料</view>
+    <view class="f-row">
+      <text class="f-label">联系人</text>
+      <input placeholder="档口负责人姓名" value="{{contact}}" data-k="contact" bindinput="onInput" />
+    </view>
+    <view class="f-row">
+      <text class="f-label">联系电话</text>
+      <input type="number" placeholder="用于审核与售后联系" value="{{phone}}" data-k="phone" bindinput="onInput" />
+    </view>
+    <view class="f-row">
+      <text class="f-label">所在城市</text>
+      <input placeholder="如：广州 沙河" value="{{city}}" data-k="city" bindinput="onInput" />
+    </view>
+    <view class="f-row">
+      <text class="f-label">营业执照号</text>
+      <input placeholder="选填，个体户可填统一社会信用代码" value="{{licenseNo}}" data-k="licenseNo" bindinput="onInput" />
+    </view>
+  </view>
+
+  <view class="card">
+    <view class="sp-title">结算账户（分账收款用）</view>
+    <view class="f-row">
+      <text class="f-label">账户类型</text>
+      <picker mode="selector" range="{{accountTypes}}" value="{{accountTypeIndex}}" bindchange="onType">
+        <view class="f-picker">{{accountTypes[accountTypeIndex]}} ›</view>
+      </picker>
+    </view>
+    <view class="f-row">
+      <text class="f-label">账户账号</text>
+      <input placeholder="商户号，如 1900000109" value="{{accountAccount}}" data-k="accountAccount" bindinput="onInput" />
+    </view>
+    <view class="f-row">
+      <text class="f-label">账户名称</text>
+      <input placeholder="与营业执照一致的名称" value="{{accountName}}" data-k="accountName" bindinput="onInput" />
+    </view>
+    <view class="sp-tip">账户类型选「商户号」即货款分到档口自己的微信支付商户号（推荐）；选「微信号」需要档口先与平台商户号完成关联。</view>
+  </view>
+
+  <view class="fixed-bar sp-bar">
+    <view class="btn-primary sp-btn {{submitting ? 'off' : ''}}" bindtap="submit">{{submitting ? '提交中…' : '提交审核'}}</view>
+  </view>
+</view>

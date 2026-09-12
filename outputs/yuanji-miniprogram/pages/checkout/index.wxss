@@ -1,0 +1,193 @@
+.ck {
+  padding-bottom: 180rpx;
+}
+
+.addr {
+  display: flex;
+  align-items: center;
+}
+
+.addr-icon {
+  width: 44rpx;
+  height: 44rpx;
+  flex: none;
+}
+
+.addr-body {
+  flex: 1;
+  margin-left: 18rpx;
+  min-width: 0;
+}
+
+.addr-line {
+  display: flex;
+  align-items: center;
+}
+
+.addr-name {
+  font-size: 30rpx;
+  font-weight: 700;
+}
+
+.addr-phone {
+  margin-left: 16rpx;
+  font-size: 25rpx;
+  color: #62626e;
+}
+
+.addr-tag {
+  margin-left: 14rpx;
+  font-size: 19rpx;
+  color: #ff3355;
+  background: #fff0f3;
+  border-radius: 6rpx;
+  padding: 3rpx 10rpx;
+}
+
+.addr-detail {
+  margin-top: 10rpx;
+  font-size: 24rpx;
+  color: #62626e;
+  line-height: 36rpx;
+}
+
+.addr-arrow {
+  margin-left: 12rpx;
+  color: #9c9ca6;
+  font-size: 30rpx;
+}
+
+.row-title {
+  font-size: 29rpx;
+  font-weight: 600;
+}
+
+.ck-item {
+  display: flex;
+  padding-top: 20rpx;
+}
+
+.ck-item image {
+  width: 150rpx;
+  height: 200rpx;
+  border-radius: 16rpx;
+  background: #f4f4f6;
+  flex: none;
+}
+
+.ck-body {
+  flex: 1;
+  margin-left: 20rpx;
+  min-width: 0;
+}
+
+.ck-name {
+  font-size: 27rpx;
+  line-height: 38rpx;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+}
+
+.ck-price {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-top: 16rpx;
+}
+
+.ck-price .price {
+  font-size: 32rpx;
+}
+
+.amt {
+  display: flex;
+  justify-content: space-between;
+  font-size: 26rpx;
+  color: #62626e;
+  padding: 14rpx 0;
+}
+
+.amt.strong {
+  color: #17171c;
+  font-weight: 700;
+  font-size: 28rpx;
+}
+
+.minus {
+  color: #ff2f4f;
+}
+
+.ck-note {
+  margin-top: 8rpx;
+  font-size: 21rpx;
+  color: #9c9ca6;
+}
+
+.f-row {
+  display: flex;
+  align-items: center;
+  min-height: 92rpx;
+  border-bottom: 1rpx solid #eeeef2;
+}
+
+.f-row:last-child {
+  border-bottom: none;
+}
+
+.f-label {
+  width: 180rpx;
+  font-size: 27rpx;
+  color: #62626e;
+}
+
+.f-row input {
+  flex: 1;
+  font-size: 27rpx;
+}
+
+.f-value {
+  flex: 1;
+  font-size: 27rpx;
+  text-align: right;
+}
+
+.ck-bar {
+  display: flex;
+  align-items: center;
+  padding: 16rpx 24rpx calc(16rpx + env(safe-area-inset-bottom));
+}
+
+.ck-total {
+  flex: 1;
+  display: flex;
+  align-items: baseline;
+}
+
+.ck-total-label {
+  font-size: 24rpx;
+  color: #62626e;
+  margin-right: 10rpx;
+}
+
+.ck-total .price {
+  font-size: 40rpx;
+}
+
+.ck-total .rmb {
+  font-size: 24rpx;
+}
+
+.ck-btn {
+  flex: none;
+  width: 260rpx;
+  text-align: center;
+  color: #fff;
+  font-size: 29rpx;
+  font-weight: 600;
+  padding: 24rpx 0;
+  border-radius: 999rpx;
+  background: linear-gradient(96deg, #ff5c7a, #ff3355);
+  box-shadow: 0 10rpx 24rpx rgba(255, 51, 85, 0.24);
+}

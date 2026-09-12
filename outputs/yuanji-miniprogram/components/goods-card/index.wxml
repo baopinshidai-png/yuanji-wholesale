@@ -1,0 +1,25 @@
+<view class="gcard" bindtap="onTap">
+  <view class="thumb">
+    <image class="img" src="{{goods.imgUrl}}" mode="aspectFill" lazy-load />
+    <view wx:if="{{goods.isNew}}" class="badge-new">今日新款</view>
+    <view wx:if="{{goods.hasVideo}}" class="badge-video">实拍</view>
+    <view wx:if="{{goods.fastShip}}" class="badge-ship">24H发</view>
+    <view class="fav" catchtap="onFav">
+      <image class="icon-img" src="{{fav ? '/images/icons/heart-brand.png' : '/images/icons/heart.png'}}" />
+    </view>
+  </view>
+  <view class="body">
+    <view class="title">{{goods.title}}</view>
+    <view class="stall">
+      <view class="stall-left">
+        <text class="market">{{goods.market}}</text>
+        <text wx:if="{{goods.subsidy}}" class="ship-tag">满减</text>
+      </view>
+      <text class="joined">已拼{{goods.joined}}件</text>
+    </view>
+    <view class="price-row">
+      <text class="price"><text class="rmb">¥</text>{{pv.main}}</text>
+      <text class="plabel">{{pv.label}}</text>
+    </view>
+  </view>
+</view>

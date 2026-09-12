@@ -1,0 +1,111 @@
+.login-page {
+  padding: 0 48rpx 80rpx;
+  background: #fff;
+  min-height: 100vh;
+}
+
+.lg-back {
+  width: 80rpx;
+  height: 120rpx;
+  display: flex;
+  align-items: center;
+  font-size: 48rpx;
+  line-height: 1;
+}
+
+.lg-title {
+  font-size: 54rpx;
+  font-weight: 700;
+  letter-spacing: 2rpx;
+  margin-bottom: 24rpx;
+}
+
+.lg-body {
+  padding-top: 40rpx;
+}
+
+.lg-btn {
+  margin-top: 32rpx;
+}
+
+button.lg-btn {
+  background: linear-gradient(96deg, #ff5c7a, #ff3355);
+  color: #fff;
+  border-radius: 999rpx;
+  font-size: 29rpx;
+  font-weight: 600;
+  line-height: 2.6;
+  border: none;
+  box-shadow: 0 10rpx 24rpx rgba(255, 51, 85, 0.24);
+}
+
+button.lg-btn::after {
+  border: none;
+}
+
+.lg-input {
+  display: flex;
+  align-items: center;
+  height: 100rpx;
+  background: #f6f7f9;
+  border-radius: 20rpx;
+  padding: 0 28rpx;
+  margin-bottom: 24rpx;
+}
+
+.lg-input input {
+  flex: 1;
+  font-size: 29rpx;
+}
+
+.lg-code .lg-send {
+  font-size: 25rpx;
+  color: #ff3355;
+  font-weight: 600;
+}
+
+.lg-switch {
+  margin-top: 32rpx;
+  text-align: center;
+  font-size: 25rpx;
+  color: #62626e;
+}
+
+.lg-agree {
+  display: flex;
+  align-items: flex-start;
+  margin-top: 56rpx;
+  font-size: 23rpx;
+  color: #62626e;
+  line-height: 36rpx;
+}
+
+.cb {
+  width: 34rpx;
+  height: 34rpx;
+  border-radius: 50%;
+  border: 2rpx solid #d8d8dd;
+  margin-right: 14rpx;
+  flex: none;
+  text-align: center;
+  line-height: 30rpx;
+  font-size: 22rpx;
+  color: transparent;
+}
+
+.cb.on {
+  background: #ff3355;
+  border-color: #ff3355;
+  color: #fff;
+}
+
+.link {
+  color: #ff3355;
+}
+
+.lg-tip {
+  margin-top: 32rpx;
+  font-size: 22rpx;
+  color: #9c9ca6;
+  line-height: 36rpx;
+}

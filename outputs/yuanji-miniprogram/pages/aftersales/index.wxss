@@ -1,0 +1,54 @@
+.page {
+  padding-bottom: 60rpx;
+}
+
+.as-status {
+  font-size: 25rpx;
+  font-weight: 600;
+  color: #ff3355;
+}
+
+.as-row {
+  display: flex;
+  font-size: 25rpx;
+  padding: 10rpx 0;
+  color: #17171c;
+}
+
+.as-row .k {
+  width: 120rpx;
+  color: #9c9ca6;
+  flex: none;
+}
+
+.as-row .hl {
+  color: #ff2f4f;
+  font-weight: 600;
+}
+
+.as-reason {
+  margin-top: 10rpx;
+  font-size: 23rpx;
+  color: #62626e;
+  line-height: 34rpx;
+}
+
+.as-imgs {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 12rpx;
+}
+
+.as-imgs image {
+  width: 140rpx;
+  height: 140rpx;
+  border-radius: 12rpx;
+  margin: 0 12rpx 12rpx 0;
+  background: #f4f4f6;
+}
+
+.as-actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 16rpx;
+}

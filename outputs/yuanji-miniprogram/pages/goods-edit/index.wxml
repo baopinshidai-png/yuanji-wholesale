@@ -1,0 +1,75 @@
+<view class="page ge-page">
+  <view class="ge-head" style="padding-top:{{statusBarHeight}}px">
+    <view class="ge-nav" style="height:{{navBarHeight}}px">
+      <view class="back" bindtap="back">‹</view>
+      <view class="ge-nav-title">{{id ? '编辑商品' : '上架商品'}}</view>
+    </view>
+  </view>
+
+  <view class="card">
+    <view class="row-between">
+      <text class="sp-title">规格库存（颜色 × 尺码）</text>
+      <view class="btn-mini" bindtap="buildSkuRows">生成 / 刷新</view>
+    </view>
+    <view class="ge-sku" wx:for="{{skuRows}}" wx:key="key">
+      <text class="ge-sku-label">{{item.label}}</text>
+      <input type="number" value="{{item.stock}}" data-i="{{index}}" bindinput="onSkuStock" />
+    </view>
+    <view class="ge-note">先填颜色与尺码，再点「生成 / 刷新」；不填的规格默认用上面的商品库存</view>
+  </view>
+
+  <view class="card">
+    <view class="ge-label">商品图片（最多 5 张，第一张为封面）</view>
+    <view class="ge-imgs">
+      <view class="ge-img" wx:for="{{imgs}}" wx:key="*this">
+        <image src="{{item}}" mode="aspectFill" />
+        <view class="ge-img-del" data-i="{{index}}" catchtap="removeImage">✕</view>
+        <view class="ge-img-cover" wx:if="{{index === 0}}">封面</view>
+      </view>
+      <view class="ge-upload" bindtap="chooseImage" wx:if="{{imgs.length < 5}}">
+        <view class="ge-upload-empty">
+          <text class="plus">＋</text>
+          <text class="tip">{{uploading ? '上传中…' : '添加图片'}}</text>
+        </view>
+      </view>
+    </view>
+    <view class="ge-note">建议竖版实拍图，展示版式会自动裁成 3:4</view>
+  </view>
+
+  <view class="card">
+    <view class="f-row">
+      <text class="f-label">商品标题</text>
+      <input placeholder="如：韩系宽松针织开衫 66001#" value="{{title}}" bindinput="onTitle" />
+    </view>
+    <view class="f-row">
+      <text class="f-label">拿货价</text>
+      <input type="digit" placeholder="认证店主可见的批发价" value="{{price}}" bindinput="onPrice" />
+    </view>
+    <view class="f-row">
+      <text class="f-label">建议零售价</text>
+      <input type="digit" placeholder="留空自动按 2.6 倍计算" value="{{suggestPrice}}" bindinput="onSuggest" />
+    </view>
+    <view class="f-row">
+      <text class="f-label">货号</text>
+      <input placeholder="选填" value="{{goodsNo}}" bindinput="onNo" />
+    </view>
+    <view class="f-row">
+      <text class="f-label">库存（件）</text>
+      <input type="number" placeholder="默认 100" value="{{stock}}" bindinput="onStock" />
+    </view>
+    <view class="f-row">
+      <text class="f-label">颜色</text>
+      <input placeholder="多个用逗号分隔，如：米白,黑色" value="{{colors}}" bindinput="onColors" />
+    </view>
+    <view class="f-row">
+      <text class="f-label">尺码</text>
+      <input placeholder="多个用逗号分隔，如：S,M,L" value="{{sizes}}" bindinput="onSizes" />
+    </view>
+  </view>
+
+  <view class="ge-tip">上架后买家列表与搜索立即可见；下架后立即隐藏。平台会按档口阶梯满减自动计算优惠。</view>
+
+  <view class="fixed-bar ge-bar">
+    <view class="btn-primary ge-btn {{submitting ? 'off' : ''}}" bindtap="submit">{{submitting ? '提交中…' : (id ? '保存修改' : '确认上架')}}</view>
+  </view>
+</view>

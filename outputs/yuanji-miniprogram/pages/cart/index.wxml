@@ -1,0 +1,58 @@
+<view class="page cart-page">
+  <view class="c-head" style="padding-top:{{statusBarHeight}}px">
+    <view class="c-head-row" style="height:{{navBarHeight}}px">
+      <text class="c-title">进货车</text>
+      <text class="c-edit" bindtap="toggleEdit">{{edit ? '完成' : '管理'}}</text>
+    </view>
+  </view>
+
+  <block wx:if="{{cart.length}}">
+    <view class="card c-item" wx:for="{{cart}}" wx:key="goodsId">
+      <image class="c-img" src="{{item.imgUrl}}" mode="aspectFill" />
+      <view class="c-body">
+        <view class="c-name">{{item.title}}</view>
+        <view class="c-spec">{{item.color}} / {{item.size}} · {{item.stallName}}</view>
+        <view class="c-price-row">
+          <text class="price"><text class="rmb">¥</text>{{certified ? item.price : item.suggestPrice}}</text>
+          <text class="plabel">{{certified ? '拿货价' : '建议零售价'}}</text>
+        </view>
+        <view class="c-op">
+          <view class="stepper">
+            <view class="step" data-i="{{index}}" data-d="-1" bindtap="step">−</view>
+            <view class="step-num">{{item.qty}}</view>
+            <view class="step" data-i="{{index}}" data-d="1" bindtap="step">＋</view>
+          </view>
+          <text class="del" data-i="{{index}}" bindtap="remove">删除</text>
+        </view>
+      </view>
+    </view>
+
+    <view class="card" wx:if="{{showDetail}}">
+      <text class="row-title">优惠明细</text>
+      <view class="muted mt8">按档口计算的阶梯满减，合计金额不含运费、红包、优惠券</view>
+      <view class="amt"><text>商品总价</text><text>¥{{total}}</text></view>
+      <view class="amt"><text>共计优惠</text><text class="minus">-¥{{discount}}</text></view>
+      <view class="amt strong"><text>合计</text><text>¥{{payable}}</text></view>
+    </view>
+  </block>
+
+  <view class="empty" wx:else>
+    <image class="empty-img" src="/images/icons/cart.png" />
+    <text class="t">进货车还是空的</text>
+    <text class="s">登录后可同步进货车中的商品</text>
+    <view class="btn-mini" bindtap="goHome">去专场挑货</view>
+  </view>
+
+  <view class="fixed-bar c-bar">
+    <view class="c-bar-spec" bindtap="toggleDetail">
+      <text class="c-bar-spec-title">优惠明细</text>
+      <text class="muted">颜色 / 尺码</text>
+    </view>
+    <view class="c-bar-amount">
+      <view class="c-bar-line"><text>商品总价</text><text>¥{{total}}</text></view>
+      <view class="c-bar-line"><text>共计优惠</text><text class="minus">-¥{{discount}}</text></view>
+      <view class="c-bar-line strong"><text>合计</text><text>¥{{payable}}</text></view>
+    </view>
+    <view class="c-bar-btn {{cart.length ? '' : 'off'}}" bindtap="checkout">去结算</view>
+  </view>
+</view>

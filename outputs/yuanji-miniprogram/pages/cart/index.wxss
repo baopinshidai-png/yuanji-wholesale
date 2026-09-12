@@ -1,0 +1,196 @@
+.cart-page {
+  padding-bottom: 180rpx;
+}
+
+.c-head {
+  background: #fff;
+}
+
+.c-head-row {
+  display: flex;
+  align-items: center;
+  padding: 0 24rpx;
+}
+
+.c-title {
+  font-size: 36rpx;
+  font-weight: 700;
+}
+
+.c-edit {
+  margin-left: auto;
+  font-size: 26rpx;
+  color: #62626e;
+}
+
+.c-item {
+  display: flex;
+}
+
+.c-img {
+  width: 180rpx;
+  height: 240rpx;
+  border-radius: 16rpx;
+  background: #f4f4f6;
+  flex: none;
+}
+
+.c-body {
+  flex: 1;
+  margin-left: 20rpx;
+  min-width: 0;
+}
+
+.c-name {
+  font-size: 27rpx;
+  line-height: 38rpx;
+  height: 76rpx;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+
+.c-spec {
+  margin-top: 8rpx;
+  font-size: 21rpx;
+  color: #9c9ca6;
+}
+
+.c-price-row {
+  display: flex;
+  align-items: baseline;
+  margin-top: 12rpx;
+}
+
+.c-price-row .price {
+  font-size: 34rpx;
+}
+
+.c-price-row .plabel {
+  font-size: 19rpx;
+  color: #ff2f4f;
+  background: #fff0f3;
+  border-radius: 6rpx;
+  padding: 3rpx 8rpx;
+  margin-left: 10rpx;
+}
+
+.c-op {
+  display: flex;
+  align-items: center;
+  margin-top: 16rpx;
+}
+
+.stepper {
+  display: flex;
+  align-items: center;
+}
+
+.step {
+  width: 52rpx;
+  height: 52rpx;
+  line-height: 48rpx;
+  text-align: center;
+  font-size: 30rpx;
+  color: #17171c;
+  background: #f4f4f7;
+  border-radius: 10rpx;
+}
+
+.step-num {
+  width: 76rpx;
+  text-align: center;
+  font-size: 27rpx;
+}
+
+.del {
+  margin-left: auto;
+  font-size: 24rpx;
+  color: #9c9ca6;
+}
+
+.row-title {
+  font-size: 29rpx;
+  font-weight: 600;
+}
+
+.mt8 {
+  margin-top: 8rpx;
+}
+
+.amt {
+  display: flex;
+  justify-content: space-between;
+  font-size: 26rpx;
+  color: #62626e;
+  padding: 14rpx 0;
+}
+
+.amt.strong {
+  color: #17171c;
+  font-weight: 700;
+  font-size: 28rpx;
+}
+
+.minus {
+  color: #ff2f4f;
+}
+
+/* ---------- 底部结算栏 ---------- */
+.c-bar {
+  display: flex;
+  align-items: center;
+  padding: 16rpx 24rpx calc(16rpx + env(safe-area-inset-bottom));
+}
+
+.c-bar-spec {
+  width: 150rpx;
+  flex: none;
+}
+
+.c-bar-spec-title {
+  display: block;
+  font-size: 25rpx;
+  font-weight: 600;
+}
+
+.c-bar-amount {
+  flex: 1;
+  text-align: right;
+  padding-right: 16rpx;
+}
+
+.c-bar-line {
+  font-size: 22rpx;
+  color: #62626e;
+  line-height: 32rpx;
+}
+
+.c-bar-line text:last-child {
+  margin-left: 12rpx;
+}
+
+.c-bar-line.strong {
+  color: #17171c;
+  font-weight: 700;
+  font-size: 24rpx;
+}
+
+.c-bar-btn {
+  flex: none;
+  width: 220rpx;
+  text-align: center;
+  color: #fff;
+  font-size: 29rpx;
+  font-weight: 600;
+  padding: 24rpx 0;
+  border-radius: 999rpx;
+  background: linear-gradient(96deg, #ff5c7a, #ff3355);
+  box-shadow: 0 10rpx 24rpx rgba(255, 51, 85, 0.24);
+}
+
+.c-bar-btn.off {
+  background: #d8d8dd;
+  box-shadow: none;
+}

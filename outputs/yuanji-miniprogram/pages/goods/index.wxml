@@ -1,0 +1,193 @@
+<view class="page gpage">
+  <view class="gd-nav" style="padding-top:{{statusBarHeight}}px">
+    <view class="gd-nav-row" style="height:{{navBarHeight}}px">
+      <view class="gd-back" bindtap="back">‹</view>
+      <view class="gd-tabs">
+        <view class="gd-tab {{tab === 'goods' ? 'on' : ''}}" data-t="goods" bindtap="setTab">商品</view>
+        <view class="gd-tab {{tab === 'stall' ? 'on' : ''}}" data-t="stall" bindtap="setTab">档口</view>
+        <view class="gd-tab {{tab === 'detail' ? 'on' : ''}}" data-t="detail" bindtap="setTab">详情</view>
+      </view>
+      <view class="gd-actions">
+        <view class="gd-act" bindtap="goSearch"><image class="icon-img" src="/images/icons/search.png" /></view>
+        <view class="gd-act" bindtap="download"><image class="icon-img" src="/images/icons/download.png" /></view>
+      </view>
+    </view>
+  </view>
+
+  <block wx:if="{{tab === 'goods'}}">
+    <view class="gd-gallery">
+      <swiper class="gd-swiper" current="{{imgIndex}}" bindchange="onSwiper">
+        <swiper-item wx:for="{{goods.imgs[imgTab].list}}" wx:key="*this">
+          <image src="{{item}}" mode="aspectFill" />
+        </swiper-item>
+      </swiper>
+      <view class="gd-imgtabs">
+        <view class="gd-imgtab {{imgTab === index ? 'on' : ''}}" wx:for="{{goods.imgs}}" wx:key="label" data-i="{{index}}" bindtap="setImgTab">{{item.label}}</view>
+      </view>
+      <view class="gd-count">{{imgIndex + 1}}/{{goods.imgs[imgTab].list.length}}</view>
+    </view>
+
+    <view class="card price-card">
+      <view class="boost-line" wx:if="{{!pv.locked}}">
+        <text class="boost">{{pv.boostLabel}}</text>
+        <text class="boost-num">¥{{pv.boost}}</text>
+        <text class="boost-btn">膨胀立减 15 ›</text>
+      </view>
+      <view class="price-line">
+        <text class="price main"><text class="rmb">¥</text>{{pv.main}}</text>
+        <text class="plabel">{{pv.label}}</text>
+        <text class="origin" wx:if="{{pv.origin}}">¥{{pv.origin}}</text>
+      </view>
+      <view class="lock-line" wx:if="{{pv.locked}}" bindtap="goLogin">
+        <text class="lock-txt">{{pv.tip}}</text>
+        <text class="lock-go">去登录 ›</text>
+      </view>
+      <view class="gd-title">{{goods.title}}</view>
+      <view class="gd-meta">
+        <text class="tag">{{goods.day}}上新</text>
+        <text class="tag plain">{{goods.stallName}} · {{goods.market}}</text>
+        <text class="joined">已拼 {{goods.joined}} 件</text>
+      </view>
+    </view>
+
+    <view class="card" bindtap="goCert">
+      <view class="row-between">
+        <text class="row-title">会员权益</text>
+        <text class="muted">更多 ›</text>
+      </view>
+      <view class="member">
+        <view class="member-col">
+          <text class="member-lv">当前等级可享</text>
+          <text class="member-desc">淡季保级</text>
+        </view>
+        <view class="member-col hi">
+          <text class="member-lv">升级白银会员可享</text>
+          <text class="member-desc">拿货价再降 3%</text>
+        </view>
+      </view>
+    </view>
+
+    <view class="card">
+      <view class="row-between" bindtap="toggleSubsidy">
+        <text class="row-title">优惠明细</text>
+        <text class="muted">{{showSubsidy ? '收起' : '更多 ›'}}</text>
+      </view>
+      <view class="subsidy-row">满减促销（商家）：满 699 减 5 起，最高满 30000 减 1050</view>
+      <view class="subsidy-list" wx:if="{{showSubsidy}}">
+        <text class="subsidy-item" wx:for="{{goods.subsidy}}" wx:key="threshold">满{{item.threshold}}减{{item.minus}}</text>
+      </view>
+    </view>
+
+    <view class="card">
+      <view class="list-row">
+        <text class="k">发货</text>
+        <text class="v">{{goods.shipCity}}发货 · 24H 极速发</text>
+      </view>
+      <view class="ship-tip">当前下单，{{goods.lastShipDate}} 未发可取消</view>
+      <view class="list-row" bindtap="toggleSku">
+        <text class="k">选择</text>
+        <text class="v">尺码、颜色</text>
+        <text class="arrow">›</text>
+      </view>
+      <view class="list-row" bindtap="toggleParams">
+        <text class="k">参数</text>
+        <text class="v ellipsis">{{goods.params[0].k}}:{{goods.params[0].v}}｜{{goods.params[1].k}}:{{goods.params[1].v}}｜{{goods.params[2].k}}:{{goods.params[2].v}}…</text>
+        <text class="arrow">›</text>
+      </view>
+      <view class="list-row" bindtap="toggleReturns">
+        <text class="k">服务</text>
+        <text class="v">{{goods.returns ? '支持 7 天无理由退换' : '不支持退货'}}</text>
+        <text class="arrow">›</text>
+      </view>
+      <view class="params-list" wx:if="{{showParams}}">
+        <view class="param" wx:for="{{goods.params}}" wx:key="k">
+          <text class="pk">{{item.k}}</text>
+          <text class="pv">{{item.v}}</text>
+        </view>
+      </view>
+      <view class="returns-box" wx:if="{{showReturns}}">
+        <text class="rb-title">{{goods.returns ? '支持 7 天无理由退换' : '为什么不支持退货？'}}</text>
+        <text class="rb-desc">特价让利商品、内衣、童装、鞋包配等部分品类不支持无理由退货；支持退货的商品需保持吊牌完整。</text>
+      </view>
+    </view>
+  </block>
+
+  <block wx:elif="{{tab === 'stall'}}">
+    <view class="card">
+      <view class="stall-head">
+        <view class="stall-avatar">{{goods.stallName}}</view>
+        <view class="stall-info">
+          <view class="stall-name">{{goods.stallName}}</view>
+          <view class="muted">{{goods.market}} · 资质已验</view>
+        </view>
+        <view class="btn-mini ghost" bindtap="goStall">进店</view>
+      </view>
+      <view class="list-row">
+        <text class="k">发货地</text>
+        <text class="v">{{goods.shipCity}}</text>
+      </view>
+      <view class="list-row">
+        <text class="k">满减</text>
+        <text class="v">满 699 减 5 起 · 18 档阶梯</text>
+      </view>
+      <view class="list-row">
+        <text class="k">服务</text>
+        <text class="v">{{goods.services}}</text>
+      </view>
+    </view>
+  </block>
+
+  <block wx:else>
+    <view class="card card-flush">
+      <view class="detail-head">图文详情</view>
+      <image class="detail-img" src="{{goods.imgUrl}}" mode="widthFix" />
+      <image class="detail-img" src="/images/goods/g3.jpg" mode="widthFix" />
+      <view class="detail-note">实拍上架：面料、工艺、细节均可放大查看</view>
+    </view>
+  </block>
+
+  <view class="fixed-bar gd-bar">
+    <view class="gd-bar-item" bindtap="goStall"><image class="icon-img" src="/images/icons/shop.png" /><text class="lbl">档口</text></view>
+    <view class="gd-bar-item" bindtap="toggleFav"><image class="icon-img" src="{{fav ? '/images/icons/heart-brand.png' : '/images/icons/heart.png'}}" /><text class="lbl">收藏</text></view>
+    <view class="gd-bar-item" bindtap="service"><image class="icon-img" src="/images/icons/service.png" /><text class="lbl">客服</text></view>
+    <view class="gd-bar-item" bindtap="goCart">
+      <image class="icon-img" src="/images/icons/cart.png" /><text class="lbl">进货车</text>
+      <text class="badge" wx:if="{{cartCount}}">{{cartCount}}</text>
+    </view>
+    <view class="gd-add" bindtap="toggleSku">加入进货车</view>
+  </view>
+
+  <view class="mask" wx:if="{{sku}}" bindtap="toggleSku"></view>
+  <view class="sku" wx:if="{{sku}}">
+    <view class="sku-head">
+      <image src="{{goods.imgUrl}}" mode="aspectFill" />
+      <view class="sku-info">
+        <view class="sku-price"><text class="rmb">¥</text>{{pv.main}}<text class="plabel">{{pv.label}}</text></view>
+        <view class="muted">已选：{{color}} / {{size}}</view>
+      </view>
+      <view class="sku-close" bindtap="toggleSku">✕</view>
+    </view>
+    <view class="sku-block">
+      <view class="sku-label">颜色</view>
+      <view class="sku-opts">
+        <view class="sku-opt {{color === item.name ? 'on' : ''}}" wx:for="{{goods.colors}}" wx:key="name" data-v="{{item.name}}" bindtap="pickColor">{{item.name}}</view>
+      </view>
+    </view>
+    <view class="sku-block">
+      <view class="sku-label">尺码</view>
+      <view class="sku-opts">
+        <view class="sku-opt {{size === item ? 'on' : ''}}" wx:for="{{goods.sizes}}" wx:key="*this" data-v="{{item}}" bindtap="pickSize">{{item}}</view>
+      </view>
+    </view>
+    <view class="sku-block row-between">
+      <view class="sku-label">拿货数量（1 件起批）</view>
+      <view class="stepper">
+        <view class="step" data-d="-1" bindtap="step">−</view>
+        <view class="step-num">{{qty}}</view>
+        <view class="step" data-d="1" bindtap="step">＋</view>
+      </view>
+    </view>
+    <view class="sku-note" wx:if="{{pv.locked}}">未认证时按建议零售价展示，认证店主后自动切换为拿货价。</view>
+    <view class="btn-primary sku-btn" bindtap="addCart">加入进货车</view>
+  </view>
+</view>

@@ -1,0 +1,108 @@
+.stall-top {
+  background: linear-gradient(180deg, #fff0f3, #f6f7f9);
+  padding-bottom: 24rpx;
+}
+
+.stall-nav {
+  display: flex;
+  align-items: center;
+  padding: 0 20rpx;
+}
+
+.back {
+  width: 60rpx;
+  font-size: 44rpx;
+  line-height: 1;
+}
+
+.nav-title {
+  font-size: 30rpx;
+  font-weight: 600;
+  margin: 0 auto;
+}
+
+.stall-card {
+  display: flex;
+  align-items: flex-start;
+  background: #fff;
+  margin: 8rpx 24rpx 0;
+  border-radius: 24rpx;
+  padding: 24rpx;
+  box-shadow: 0 2rpx 14rpx rgba(17, 17, 30, 0.05);
+}
+
+.avatar {
+  width: 108rpx;
+  height: 108rpx;
+  border-radius: 24rpx;
+  background: linear-gradient(135deg, #fff0f3, #ffe0e7);
+  color: #d81b47;
+  font-size: 22rpx;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 0 8rpx;
+  overflow: hidden;
+  flex: none;
+}
+
+.info {
+  flex: 1;
+  margin: 0 16rpx 0 20rpx;
+  min-width: 0;
+}
+
+.name {
+  font-size: 32rpx;
+  font-weight: 700;
+}
+
+.meta {
+  margin-top: 8rpx;
+  font-size: 22rpx;
+  color: #9c9ca6;
+}
+
+.stat-row {
+  display: flex;
+  margin-top: 16rpx;
+}
+
+.stat {
+  margin-right: 32rpx;
+}
+
+.stat .n {
+  font-size: 28rpx;
+  font-weight: 700;
+  color: #17171c;
+  margin-right: 6rpx;
+}
+
+.stat .t {
+  font-size: 21rpx;
+  color: #9c9ca6;
+}
+
+.subsidy {
+  margin: 20rpx 24rpx 0;
+  background: #fff;
+  border-radius: 20rpx;
+  padding: 20rpx 24rpx;
+  box-shadow: 0 2rpx 14rpx rgba(17, 17, 30, 0.05);
+}
+
+.s-title {
+  font-size: 26rpx;
+  font-weight: 600;
+}
+
+.s-desc {
+  display: block;
+  margin-top: 10rpx;
+  font-size: 22rpx;
+  color: #62626e;
+  line-height: 36rpx;
+}

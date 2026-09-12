@@ -1,0 +1,33 @@
+<view class="page ad">
+  <view class="nav" style="padding-top:{{statusBarHeight}}px">
+    <view class="nav-inner" style="height:{{navBarHeight}}px">
+      <view class="nav-back" bindtap="back">‹</view>
+      收货地址
+      <view class="nav-right" bindtap="toggleAdd">{{adding ? '取消' : '新增'}}</view>
+    </view>
+  </view>
+
+  <view class="card addr" wx:for="{{addresses}}" wx:key="id" data-id="{{item.id}}" bindtap="pick">
+    <view class="addr-line">
+      <text class="addr-name">{{item.name}}</text>
+      <text class="muted">{{item.phone}}</text>
+      <text class="addr-tag" wx:if="{{item.isDefault}}">默认</text>
+      <text class="addr-tag picked" wx:if="{{item.id === pickedId}}">当前选择</text>
+    </view>
+    <view class="addr-detail">{{item.region}} {{item.detail}}</view>
+    <view class="addr-ops">
+      <text class="op" data-id="{{item.id}}" catchtap="setDefault">设为默认</text>
+    </view>
+  </view>
+
+  <view class="card" wx:if="{{adding}}">
+    <view class="row-title">新增地址</view>
+    <view class="f-row"><text class="f-label">收货人</text><input placeholder="姓名" value="{{form.name}}" data-k="name" bindinput="onInput" /></view>
+    <view class="f-row"><text class="f-label">手机号</text><input type="number" placeholder="手机号" value="{{form.phone}}" data-k="phone" bindinput="onInput" /></view>
+    <view class="f-row"><text class="f-label">地区</text><input placeholder="省 市 区" value="{{form.region}}" data-k="region" bindinput="onInput" /></view>
+    <view class="f-row"><text class="f-label">详细地址</text><input placeholder="街道门牌 / 档口" value="{{form.detail}}" data-k="detail" bindinput="onInput" /></view>
+    <view class="btn-primary save-btn" bindtap="save">保存地址</view>
+  </view>
+
+  <view class="muted tip">提示：批发订单按档口拆单发货，建议填写能正常收货的地址；退换货按商品页标注的退货策略执行。</view>
+</view>

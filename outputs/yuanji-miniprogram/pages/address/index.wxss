@@ -1,0 +1,91 @@
+.ad {
+  padding-bottom: 80rpx;
+}
+
+.addr {
+  position: relative;
+}
+
+.addr-line {
+  display: flex;
+  align-items: center;
+}
+
+.addr-name {
+  font-size: 30rpx;
+  font-weight: 700;
+}
+
+.addr-line .muted {
+  margin-left: 16rpx;
+}
+
+.addr-tag {
+  margin-left: 14rpx;
+  font-size: 19rpx;
+  color: #ff3355;
+  background: #fff0f3;
+  border-radius: 6rpx;
+  padding: 3rpx 10rpx;
+}
+
+.addr-tag.picked {
+  color: #0d8f60;
+  background: #eafaf3;
+}
+
+.addr-detail {
+  margin-top: 12rpx;
+  font-size: 25rpx;
+  color: #62626e;
+  line-height: 38rpx;
+}
+
+.addr-ops {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 16rpx;
+  padding-top: 16rpx;
+  border-top: 1rpx solid #f2f2f5;
+}
+
+.op {
+  font-size: 24rpx;
+  color: #62626e;
+}
+
+.row-title {
+  font-size: 29rpx;
+  font-weight: 600;
+}
+
+.f-row {
+  display: flex;
+  align-items: center;
+  min-height: 92rpx;
+  border-bottom: 1rpx solid #eeeef2;
+}
+
+.f-row:last-of-type {
+  border-bottom: none;
+}
+
+.f-label {
+  width: 180rpx;
+  font-size: 27rpx;
+  color: #62626e;
+}
+
+.f-row input {
+  flex: 1;
+  font-size: 27rpx;
+}
+
+.save-btn {
+  margin-top: 24rpx;
+}
+
+.tip {
+  margin: 8rpx 32rpx 0;
+  line-height: 36rpx;
+}

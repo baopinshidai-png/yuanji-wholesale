@@ -1,0 +1,98 @@
+.od {
+  padding-bottom: 60rpx;
+}
+
+.tabs {
+  display: flex;
+  background: #fff;
+  padding: 0 12rpx 16rpx;
+}
+
+.tab {
+  flex: 1;
+  text-align: center;
+  font-size: 27rpx;
+  color: #62626e;
+  padding: 12rpx 0;
+  position: relative;
+}
+
+.tab.on {
+  color: #17171c;
+  font-weight: 700;
+}
+
+.tab.on::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  width: 40rpx;
+  height: 6rpx;
+  margin-left: -20rpx;
+  border-radius: 999rpx;
+  background: linear-gradient(96deg, #ff5c7a, #ff3355);
+}
+
+.status {
+  font-size: 25rpx;
+  font-weight: 600;
+  color: #ff3355;
+}
+
+.od-item {
+  display: flex;
+  padding: 20rpx 0;
+  border-bottom: 1rpx solid #f2f2f5;
+}
+
+.od-item image {
+  width: 150rpx;
+  height: 200rpx;
+  border-radius: 16rpx;
+  background: #f4f4f6;
+  flex: none;
+}
+
+.od-body {
+  flex: 1;
+  margin-left: 20rpx;
+  min-width: 0;
+}
+
+.od-title {
+  font-size: 27rpx;
+  line-height: 38rpx;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+}
+
+.od-price {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-top: 14rpx;
+}
+
+.od-price .price {
+  font-size: 32rpx;
+}
+
+.od-sum {
+  padding: 20rpx 0 4rpx;
+  text-align: right;
+  font-size: 24rpx;
+  color: #62626e;
+}
+
+.od-actions {
+  display: flex;
+  justify-content: flex-end;
+  padding-top: 16rpx;
+}
+
+.od-actions .btn-mini {
+  margin-left: 16rpx;
+}

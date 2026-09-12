@@ -1,0 +1,30 @@
+<view class="page">
+  <view class="stall-top" style="padding-top:{{statusBarHeight}}px">
+    <view class="stall-nav" style="height:{{navBarHeight}}px">
+      <view class="back" bindtap="back">‹</view>
+      <view class="nav-title">{{stall.name}}</view>
+    </view>
+    <view class="stall-card">
+      <view class="avatar">{{stall.name}}</view>
+      <view class="info">
+        <view class="name">{{stall.name}}</view>
+        <view class="meta">{{stall.market}} · {{stall.address}} · 资质已验</view>
+        <view class="stat-row">
+          <view class="stat"><text class="n">{{stall.score}}</text><text class="t">评分</text></view>
+          <view class="stat"><text class="n">{{stall.shipRate}}%</text><text class="t">发货率</text></view>
+          <view class="stat"><text class="n">{{stall.newCount}}</text><text class="t">今日上新</text></view>
+        </view>
+      </view>
+      <view class="btn-mini {{subbed ? 'ghost' : ''}}" bindtap="toggleSub">{{subbed ? '已订阅' : '订阅'}}</view>
+    </view>
+    <view class="subsidy">
+      <text class="s-title">档口满减</text>
+      <text class="s-desc">满 699 减 5 · 满 1699 减 35 · 满 5999 减 150 · 满 30000 减 1050（共 18 档）</text>
+    </view>
+  </view>
+  <view class="ggrid">
+    <view class="cell" wx:for="{{goods}}" wx:key="id">
+      <goods-card goods="{{item}}" />
+    </view>
+  </view>
+</view>

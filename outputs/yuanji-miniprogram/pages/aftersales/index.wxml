@@ -1,0 +1,38 @@
+<view class="page">
+  <view class="nav" style="padding-top:{{statusBarHeight}}px">
+    <view class="nav-inner" style="height:{{navBarHeight}}px">
+      <view class="nav-back" bindtap="back">‹</view>
+      售后进度
+    </view>
+  </view>
+
+  <block wx:if="{{list.length}}">
+    <view class="card" wx:for="{{list}}" wx:key="id">
+      <view class="row-between">
+        <text class="muted">售后单 {{item.id}}</text>
+        <text class="as-status">{{item.statusText}}</text>
+      </view>
+      <view class="as-row"><text class="k">类型</text><text class="v">{{item.type}}</text></view>
+      <view class="as-row"><text class="k">订单</text><text class="v" data-order="{{item.orderId}}" bindtap="detail">{{item.orderId}} ›</text></view>
+      <view class="as-row"><text class="k">档口</text><text class="v">{{item.stallName}}</text></view>
+      <view class="as-row"><text class="k">金额</text><text class="v hl">¥{{item.amount}}</text></view>
+      <view class="as-reason">原因：{{item.reason}}</view>
+      <view class="as-imgs" wx:if="{{item.images.length}}">
+        <image wx:for="{{item.images}}" wx:for-item="img" wx:key="*this" src="{{img}}" mode="aspectFill"
+          data-url="{{img}}" data-urls="{{item.images}}" bindtap="previewImage" />
+      </view>
+      <view class="as-reason" wx:if="{{item.returnLogistics}}">退货运单：{{item.returnLogistics}}</view>
+      <view class="as-reason" wx:if="{{item.handleNote}}">档口回复：{{item.handleNote}}</view>
+      <view class="as-reason" wx:if="{{item.note}}">平台说明：{{item.note}}</view>
+      <view class="as-actions" wx:if="{{item.status === 'waiting_return'}}">
+        <view class="btn-mini" data-id="{{item.id}}" catchtap="fillReturn">填写退货单号</view>
+      </view>
+    </view>
+  </block>
+
+  <view class="empty" wx:else>
+    <image class="empty-img" src="/images/icons/service.png" />
+    <text class="t">还没有售后申请</text>
+    <text class="s">订单详情页可以发起售后</text>
+  </view>
+</view>

@@ -1,0 +1,108 @@
+<view class="page">
+  <view class="s-head" style="padding-top:{{statusBarHeight}}px">
+    <view class="s-row">
+      <view class="s-back" bindtap="back">‹</view>
+      <view class="s-input">
+        <image class="icon-img sm" src="/images/icons/search.png" />
+        <input value="{{kw}}" placeholder="搜索商品或档口" confirm-type="search" bindinput="onInput" bindconfirm="doSearch" />
+        <view class="s-scan" bindtap="scan"><image class="icon-img sm" src="/images/icons/camera.png" /></view>
+      </view>
+    </view>
+  </view>
+
+  <block wx:if="{{!searched}}">
+    <view class="card">
+      <view class="row-between">
+        <text class="row-title">历史搜索</text>
+        <text class="muted" bindtap="clearHistory">清空</text>
+      </view>
+      <view class="chips" wx:if="{{history.length}}">
+        <view class="chip" wx:for="{{history}}" wx:key="*this" data-w="{{item}}" bindtap="doSearch">{{item}}</view>
+      </view>
+      <view class="muted" wx:else>暂无搜索历史</view>
+    </view>
+    <view class="card">
+      <text class="row-title">搜索推荐</text>
+      <view class="chips">
+        <view class="chip hot" wx:for="{{recommend}}" wx:key="*this" data-w="{{item}}" bindtap="doSearch">{{item}}</view>
+      </view>
+    </view>
+    <view class="card">
+      <text class="row-title">热门搜索</text>
+      <view class="chips">
+        <view class="chip" wx:for="{{hotWords}}" wx:key="*this" data-w="{{item}}" bindtap="doSearch">{{item}}</view>
+      </view>
+    </view>
+  </block>
+
+  <block wx:else>
+    <view class="sortbar">
+      <view class="sort {{sort === 'all' ? 'on' : ''}}" data-k="all" bindtap="setSort">综合</view>
+      <view class="sort {{sort === 'sold' ? 'on' : ''}}" data-k="sold" bindtap="setSort">销量</view>
+      <view class="sort {{sort === 'new' ? 'on' : ''}}" data-k="new" bindtap="setSort">上新</view>
+      <view class="sort {{sort === 'price' ? 'on' : ''}}" data-k="price" bindtap="setSort">批发价</view>
+      <view class="sort filter" bindtap="toggleFilter">筛选 ▾</view>
+    </view>
+    <scroll-view class="chips" scroll-x>
+      <view class="chip {{activeFilter === item ? 'on' : ''}}" wx:for="{{filters}}" wx:key="*this" data-f="{{item}}" bindtap="pickFilterTab">{{item}}</view>
+    </scroll-view>
+    <view class="s-count" wx:if="{{results.length}}">{{resultHint}}</view>
+    <view class="ggrid" wx:if="{{results.length}}">
+      <view class="cell" wx:for="{{results}}" wx:key="id">
+        <goods-card goods="{{item}}" />
+      </view>
+    </view>
+    <view class="empty" wx:else>
+      <image class="empty-img" src="/images/icons/search.png" />
+      <text class="t">没有找到相关货源</text>
+      <text class="s">换个关键词，或试试以图搜款</text>
+    </view>
+  </block>
+
+  <view class="mask" wx:if="{{showFilter}}" bindtap="toggleFilter"></view>
+  <view class="drawer" wx:if="{{showFilter}}">
+    <view class="d-title">全部筛选</view>
+    <view class="d-label">分类（多选）</view>
+    <view class="chips">
+      <view class="chip" wx:for="{{hotWords}}" wx:key="*this">{{item}}</view>
+    </view>
+    <view class="d-label">近期上新（单选）</view>
+    <view class="chips">
+      <view class="chip">今日上新</view>
+      <view class="chip">近 3 日上新</view>
+      <view class="chip">近 7 日上新</view>
+      <view class="chip">同步上新</view>
+    </view>
+    <view class="d-label">热卖活动（单选）</view>
+    <view class="chips">
+      <view class="chip">7 日爆款</view>
+      <view class="chip">档口爆款</view>
+      <view class="chip">今日特价</view>
+      <view class="chip">限量补贴</view>
+    </view>
+    <view class="d-label">市场（多选）</view>
+    <view class="chips">
+      <view class="chip" wx:for="{{markets}}" wx:key="*this">{{item}}</view>
+    </view>
+    <view class="d-label">服务（单选）</view>
+    <view class="chips">
+      <view class="chip">24H 发货</view>
+      <view class="chip">慢必赔</view>
+      <view class="chip">批量采购价</view>
+      <view class="chip">搭配推荐</view>
+      <view class="chip">实拍视频</view>
+      <view class="chip">满减</view>
+      <view class="chip">红包</view>
+    </view>
+    <view class="d-label">价格区间（单选）</view>
+    <view class="chips">
+      <view class="chip">¥0-70</view>
+      <view class="chip">¥70-150</view>
+      <view class="chip">¥150 以上</view>
+    </view>
+    <view class="d-foot">
+      <view class="btn-ghost d-btn" bindtap="resetFilter">重置</view>
+      <view class="btn-primary d-btn" bindtap="applyFilter">确定</view>
+    </view>
+  </view>
+</view>

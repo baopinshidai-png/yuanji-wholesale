@@ -1,0 +1,437 @@
+.topbar {
+  background: #fff;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.topbar-row {
+  display: flex;
+  align-items: center;
+  padding: 0 24rpx;
+}
+
+.brand {
+  font-size: 38rpx;
+  font-weight: 700;
+  letter-spacing: 1rpx;
+}
+
+.brand-sub {
+  margin-left: 14rpx;
+  font-size: 22rpx;
+  font-weight: 400;
+  color: #9c9ca6;
+  letter-spacing: 0;
+}
+
+.msg {
+  width: 72rpx;
+  height: 64rpx;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.search-row {
+  padding: 0 24rpx 20rpx;
+  display: flex;
+  align-items: center;
+}
+
+.search-row .searchbar {
+  flex: 1;
+}
+
+.searchbar .ph {
+  color: #9c9ca6;
+}
+
+/* ---------- 新人礼包 ---------- */
+.gift {
+  margin: 4rpx 24rpx 8rpx;
+  background: linear-gradient(135deg, #fff3f5, #ffe9ee);
+  border-radius: 24rpx;
+  padding: 24rpx;
+}
+
+.gift-head {
+  display: flex;
+  align-items: baseline;
+}
+
+/* 首页运营位（后台可配） */
+.cp-strip {
+  white-space: nowrap;
+  padding: 16rpx 24rpx 4rpx;
+}
+
+.cp-card {
+  display: inline-flex;
+  align-items: center;
+  min-width: 420rpx;
+  margin-right: 16rpx;
+  background: linear-gradient(120deg, #fff3f5, #ffe6ec);
+  border-radius: 20rpx;
+  padding: 20rpx 24rpx;
+  vertical-align: top;
+}
+
+.cp-card image {
+  width: 96rpx;
+  height: 96rpx;
+  border-radius: 16rpx;
+  margin-right: 18rpx;
+  flex: none;
+  background: #fff;
+}
+
+.cp-title {
+  font-size: 28rpx;
+  font-weight: 700;
+  color: #d81b47;
+}
+
+.cp-sub {
+  margin-top: 6rpx;
+  font-size: 21rpx;
+  color: #c9707f;
+}
+
+.gift-title {
+  font-size: 32rpx;
+  font-weight: 700;
+  color: #d81b47;
+}
+
+.gift-sub {
+  margin-left: 14rpx;
+  font-size: 21rpx;
+  color: #c9707f;
+}
+
+.gift-all {
+  margin-left: auto;
+  font-size: 22rpx;
+  color: #c9707f;
+}
+
+.gift-row {
+  display: flex;
+  margin-top: 18rpx;
+}
+
+.gift-item {
+  flex: 1;
+  background: #fff;
+  border-radius: 16rpx;
+  padding: 16rpx 8rpx;
+  margin-right: 12rpx;
+  text-align: center;
+  box-shadow: 0 4rpx 12rpx rgba(216, 27, 71, 0.06);
+}
+
+.gift-item:last-child {
+  margin-right: 0;
+}
+
+.gift-amount {
+  display: block;
+  font-size: 32rpx;
+  font-weight: 700;
+  color: #ff3355;
+  line-height: 1.1;
+}
+
+.gift-desc {
+  display: block;
+  font-size: 20rpx;
+  color: #9c9ca6;
+  margin: 6rpx 0 12rpx;
+}
+
+.gift-btn {
+  display: inline-block;
+  font-size: 20rpx;
+  color: #fff;
+  background: linear-gradient(96deg, #ff5c7a, #ff3355);
+  border-radius: 999rpx;
+  padding: 6rpx 22rpx;
+}
+
+/* ---------- 榜单卡 ---------- */
+.boards {
+  display: flex;
+  padding: 12rpx 24rpx 0;
+}
+
+.board {
+  flex: 1;
+  margin-right: 14rpx;
+  border-radius: 20rpx;
+  overflow: hidden;
+  position: relative;
+  height: 268rpx;
+  background: #f4f4f6;
+}
+
+.board:last-child {
+  margin-right: 0;
+}
+
+.board image {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.board-mask {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 120rpx;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.6));
+}
+
+.board-txt {
+  position: absolute;
+  left: 14rpx;
+  right: 14rpx;
+  bottom: 18rpx;
+}
+
+.board-title {
+  display: block;
+  color: #fff;
+  font-size: 25rpx;
+  font-weight: 700;
+}
+
+.board-sub {
+  display: block;
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 19rpx;
+  margin-top: 2rpx;
+}
+
+/* ---------- 市场金刚区 ---------- */
+.markets {
+  white-space: nowrap;
+  padding: 24rpx 12rpx 4rpx;
+}
+
+.market-item {
+  display: inline-block;
+  width: 132rpx;
+  text-align: center;
+  vertical-align: top;
+}
+
+.bubble {
+  width: 92rpx;
+  height: 92rpx;
+  margin: 0 auto 10rpx;
+  border-radius: 50%;
+  background: #f4f4f7;
+  color: #4b4b57;
+  font-size: 23rpx;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 0 8rpx;
+  line-height: 28rpx;
+}
+
+.market-item:nth-child(4n + 1) .bubble {
+  background: #fff0f3;
+  color: #d81b47;
+}
+
+.market-item:nth-child(4n + 2) .bubble {
+  background: #eef4ff;
+  color: #3661d8;
+}
+
+.market-item:nth-child(4n + 3) .bubble {
+  background: #eafaf3;
+  color: #0d8f60;
+}
+
+.market-item:nth-child(4n + 4) .bubble {
+  background: #fff5e8;
+  color: #b26a00;
+}
+
+.bubble.more {
+  background: #f4f4f7;
+  color: #9c9ca6;
+}
+
+.m-name {
+  font-size: 23rpx;
+  color: #3f3f4a;
+}
+
+/* ---------- 运营卡 ---------- */
+.cards {
+  display: flex;
+  padding: 24rpx 24rpx 0;
+}
+
+.op-card {
+  background: #fff;
+  border-radius: 24rpx;
+  padding: 24rpx;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 2rpx 14rpx rgba(17, 17, 30, 0.05);
+}
+
+.op-card.big {
+  width: 47%;
+  margin-right: 16rpx;
+  background: linear-gradient(160deg, #fff6f8, #ffeaf0);
+  display: flex;
+  flex-direction: column;
+}
+
+.op-tag {
+  display: inline-block;
+  align-self: flex-start;
+  font-size: 19rpx;
+  color: #ff3355;
+  background: rgba(255, 255, 255, 0.85);
+  border-radius: 999rpx;
+  padding: 4rpx 14rpx;
+  margin-bottom: 12rpx;
+}
+
+.op-col {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.op-card.row {
+  display: flex;
+  align-items: center;
+  padding: 20rpx;
+  margin-bottom: 16rpx;
+}
+
+.op-col .op-card.row:last-child {
+  margin-bottom: 0;
+}
+
+.op-txt {
+  flex: 1;
+}
+
+.op-title {
+  font-size: 29rpx;
+  font-weight: 700;
+}
+
+.op-sub {
+  font-size: 21rpx;
+  color: #8a8a95;
+  margin-top: 6rpx;
+}
+
+.op-imgs {
+  display: flex;
+  margin-top: auto;
+  padding-top: 16rpx;
+}
+
+.op-imgs image {
+  width: 45%;
+  height: 170rpx;
+  border-radius: 14rpx;
+  margin-right: 10rpx;
+}
+
+.op-thumb {
+  width: 104rpx;
+  height: 104rpx;
+  border-radius: 16rpx;
+  flex: none;
+  margin-left: 12rpx;
+}
+
+/* ---------- 大牌联合上新 ---------- */
+.brand-card {
+  margin: 24rpx 24rpx 0;
+  background: #fff;
+  border-radius: 24rpx;
+  padding: 24rpx 0 20rpx;
+  box-shadow: 0 2rpx 14rpx rgba(17, 17, 30, 0.05);
+}
+
+.brand-card .sec-head {
+  padding: 0 24rpx 16rpx;
+}
+
+.brand-tip {
+  margin-left: 14rpx;
+  font-size: 21rpx;
+  color: #ff3355;
+  background: #fff0f3;
+  padding: 5rpx 14rpx;
+  border-radius: 999rpx;
+}
+
+.brand-scroll {
+  white-space: nowrap;
+  padding: 0 12rpx;
+}
+
+.brand-item {
+  display: inline-block;
+  width: 210rpx;
+  margin: 0 12rpx;
+  text-align: center;
+}
+
+.brand-item image {
+  width: 210rpx;
+  height: 250rpx;
+  border-radius: 16rpx;
+  background: #f4f4f6;
+  display: block;
+}
+
+.brand-price {
+  margin-top: 12rpx;
+  font-size: 28rpx;
+  font-weight: 700;
+  color: #ff2f4f;
+}
+
+.brand-label {
+  font-size: 20rpx;
+  color: #9c9ca6;
+  margin-top: 2rpx;
+}
+
+.brand-note {
+  margin: 18rpx 24rpx 0;
+  font-size: 21rpx;
+  color: #9c9ca6;
+  border-top: 1rpx solid #f2f2f5;
+  padding-top: 16rpx;
+}
+
+/* ---------- 商品流 ---------- */
+.feed-head {
+  display: flex;
+  align-items: baseline;
+  padding: 28rpx 24rpx 12rpx;
+}
+
+.feed-head .sec-more {
+  margin-left: auto;
+}

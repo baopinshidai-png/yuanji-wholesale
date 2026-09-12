@@ -1,0 +1,44 @@
+.page {
+  padding-bottom: 60rpx;
+}
+
+.s-left {
+  display: flex;
+  align-items: center;
+  flex: 1;
+  min-width: 0;
+}
+
+.s-avatar {
+  width: 96rpx;
+  height: 96rpx;
+  border-radius: 20rpx;
+  background: linear-gradient(135deg, #fff0f3, #ffe0e7);
+  color: #d81b47;
+  font-size: 22rpx;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 0 8rpx;
+  overflow: hidden;
+  flex: none;
+}
+
+.s-info {
+  margin-left: 20rpx;
+  min-width: 0;
+}
+
+.s-name {
+  font-size: 29rpx;
+  font-weight: 600;
+  margin-bottom: 6rpx;
+}
+
+.s-meta {
+  font-size: 22rpx;
+  color: #ff3355;
+  margin-top: 6rpx;
+}

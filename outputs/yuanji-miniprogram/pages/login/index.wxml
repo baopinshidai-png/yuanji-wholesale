@@ -1,0 +1,32 @@
+<view class="page login-page">
+  <view class="lg-back" bindtap="backDefault">‹</view>
+  <view class="lg-title">登录</view>
+
+  <view class="lg-body">
+    <block wx:if="{{!other}}">
+      <button class="btn-primary lg-btn" open-type="getPhoneNumber" bindgetphonenumber="onGetPhone">手机号一键登录</button>
+      <view class="btn-ghost lg-btn" bindtap="toggleOther">使用其它方式登录</view>
+    </block>
+    <block wx:else>
+      <view class="lg-input">
+        <input type="number" maxlength="11" placeholder="请输入手机号" value="{{phone}}" bindinput="onPhoneInput" />
+      </view>
+      <view class="lg-input lg-code">
+        <input type="number" maxlength="4" placeholder="验证码" value="{{code}}" bindinput="onCodeInput" />
+        <text class="lg-send" bindtap="sendCode">{{counting ? counting + 's 后重发' : '获取验证码'}}</text>
+      </view>
+      <view class="btn-primary lg-btn" bindtap="loginByCode">登录</view>
+      <view class="lg-switch" bindtap="toggleOther">‹ 返回一键登录</view>
+    </block>
+
+    <view class="lg-agree" bindtap="toggleAgree">
+      <view class="cb {{agreed ? 'on' : ''}}">{{agreed ? '✓' : ''}}</view>
+      <text>阅读并同意<text class="link" catchtap="goDoc" data-type="terms">《源集用户服务协议》</text>和<text class="link" catchtap="goDoc" data-type="privacy">《隐私政策》</text></text>
+    </view>
+
+    <view class="lg-tip">
+      说明：本平台仅向完成店主认证的服装从业者（实体店、网店、直播、微商、二批等）提供批发价，
+      登录后需完成认证才能查看拿货价。
+    </view>
+  </view>
+</view>

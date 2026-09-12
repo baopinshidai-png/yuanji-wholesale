@@ -1,0 +1,137 @@
+.cat {
+  padding-bottom: 0;
+}
+
+.cat-head {
+  background: #fff;
+  padding: 0 24rpx 20rpx;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.cat-head .ph {
+  color: #9c9ca6;
+}
+
+.cat-body {
+  display: flex;
+  align-items: flex-start;
+}
+
+.rail {
+  width: 196rpx;
+  flex: none;
+  background: #fff;
+  height: calc(100vh - 240rpx);
+  padding-top: 8rpx;
+}
+
+.rail-item {
+  position: relative;
+  font-size: 26rpx;
+  color: #62626e;
+  padding: 30rpx 12rpx 30rpx 28rpx;
+}
+
+.rail-item.on {
+  color: #17171c;
+  font-weight: 700;
+  background: #f6f7f9;
+}
+
+.rail-item.on::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  margin-top: -22rpx;
+  width: 8rpx;
+  height: 44rpx;
+  border-radius: 0 8rpx 8rpx 0;
+  background: linear-gradient(180deg, #ff5c7a, #ff3355);
+}
+
+.cat-main {
+  flex: 1;
+  background: #f6f7f9;
+  height: calc(100vh - 240rpx);
+  padding: 0 16rpx;
+}
+
+.block-title {
+  font-size: 27rpx;
+  font-weight: 700;
+  padding: 24rpx 8rpx 16rpx;
+}
+
+.market-grid {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.market-cell {
+  width: calc(33.33% - 16rpx);
+  margin: 0 16rpx 16rpx 0;
+  background: #fff;
+  border-radius: 16rpx;
+  text-align: center;
+  font-size: 24rpx;
+  color: #3f3f4a;
+  padding: 24rpx 0;
+}
+
+.hot-grid {
+  display: flex;
+  flex-wrap: wrap;
+  background: #fff;
+  border-radius: 20rpx;
+  padding: 16rpx 8rpx;
+}
+
+.hot-cell {
+  width: 33.33%;
+  text-align: center;
+  padding: 8rpx;
+}
+
+.hot-cell image {
+  width: 100%;
+  height: 180rpx;
+  border-radius: 16rpx;
+  background: #f4f4f6;
+  display: block;
+}
+
+.hot-name {
+  margin-top: 10rpx;
+  font-size: 23rpx;
+  color: #3f3f4a;
+}
+
+.sub-wrap {
+  display: flex;
+  flex-wrap: wrap;
+  background: #fff;
+  border-radius: 20rpx;
+  padding: 16rpx 8rpx 8rpx;
+}
+
+.sub-chip {
+  font-size: 23rpx;
+  color: #62626e;
+  background: #f4f4f7;
+  border-radius: 999rpx;
+  padding: 12rpx 24rpx;
+  margin: 0 12rpx 12rpx 8rpx;
+}
+
+.sub-chip.on {
+  color: #ff3355;
+  background: #fff0f3;
+  font-weight: 600;
+}
+
+.ggrid.tight {
+  padding: 0;
+}

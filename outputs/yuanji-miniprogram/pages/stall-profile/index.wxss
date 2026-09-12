@@ -1,0 +1,115 @@
+.sp-page {
+  padding-bottom: 200rpx;
+}
+
+.sp-head {
+  background: #fff;
+}
+
+.sp-nav {
+  display: flex;
+  align-items: center;
+  padding: 0 20rpx;
+}
+
+.back {
+  width: 60rpx;
+  font-size: 44rpx;
+  line-height: 1;
+}
+
+.sp-nav-title {
+  margin: 0 auto;
+  font-size: 30rpx;
+  font-weight: 600;
+}
+
+.sp-status {
+  background: #f7f7fa;
+}
+
+.sp-status.approved {
+  background: linear-gradient(135deg, #eafaf3, #dff7ec);
+}
+
+.sp-status.pending {
+  background: linear-gradient(135deg, #fff6e8, #ffefd8);
+}
+
+.sp-status.rejected {
+  background: linear-gradient(135deg, #fff0f3, #ffe4e9);
+}
+
+.sp-status-row {
+  display: flex;
+  align-items: baseline;
+}
+
+.sp-status-text {
+  font-size: 32rpx;
+  font-weight: 700;
+}
+
+.sp-status-tip {
+  margin-left: 16rpx;
+  font-size: 22rpx;
+  color: #62626e;
+}
+
+.sp-note {
+  margin-top: 12rpx;
+  font-size: 23rpx;
+  color: #d81b47;
+}
+
+.sp-title {
+  font-size: 29rpx;
+  font-weight: 600;
+  margin-bottom: 8rpx;
+}
+
+.f-row {
+  display: flex;
+  align-items: center;
+  min-height: 96rpx;
+  border-bottom: 1rpx solid #eeeef2;
+}
+
+.f-row:last-child {
+  border-bottom: none;
+}
+
+.f-label {
+  width: 200rpx;
+  flex: none;
+  font-size: 27rpx;
+  color: #62626e;
+}
+
+.f-row input {
+  flex: 1;
+  font-size: 27rpx;
+}
+
+.f-row picker {
+  flex: 1;
+}
+
+.f-picker {
+  font-size: 27rpx;
+}
+
+.sp-tip {
+  margin-top: 16rpx;
+  font-size: 21rpx;
+  color: #9c9ca6;
+  line-height: 34rpx;
+}
+
+.sp-bar {
+  padding: 16rpx 24rpx calc(16rpx + env(safe-area-inset-bottom));
+}
+
+.sp-btn.off {
+  opacity: 0.6;
+}

@@ -1,0 +1,178 @@
+.ge-page {
+  padding-bottom: 200rpx;
+}
+
+.ge-head {
+  background: #fff;
+}
+
+.ge-nav {
+  display: flex;
+  align-items: center;
+  padding: 0 20rpx;
+}
+
+.back {
+  width: 60rpx;
+  font-size: 44rpx;
+  line-height: 1;
+}
+
+.ge-nav-title {
+  margin: 0 auto;
+  font-size: 30rpx;
+  font-weight: 600;
+}
+
+.ge-label {
+  font-size: 27rpx;
+  color: #62626e;
+}
+
+.ge-upload {
+  margin: 0 16rpx 16rpx 0;
+  width: 200rpx;
+  height: 260rpx;
+  border-radius: 20rpx;
+  overflow: hidden;
+  background: #f6f7f9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ge-imgs {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 20rpx;
+}
+
+.ge-img {
+  position: relative;
+  width: 200rpx;
+  height: 260rpx;
+  border-radius: 20rpx;
+  overflow: hidden;
+  margin: 0 16rpx 16rpx 0;
+  background: #f6f7f9;
+}
+
+.ge-img image {
+  width: 100%;
+  height: 100%;
+}
+
+.ge-img-del {
+  position: absolute;
+  right: 8rpx;
+  top: 8rpx;
+  width: 40rpx;
+  height: 40rpx;
+  line-height: 40rpx;
+  text-align: center;
+  border-radius: 50%;
+  background: rgba(17, 17, 24, 0.55);
+  color: #fff;
+  font-size: 22rpx;
+}
+
+.ge-img-cover {
+  position: absolute;
+  left: 8rpx;
+  bottom: 8rpx;
+  font-size: 19rpx;
+  color: #fff;
+  background: rgba(255, 51, 85, 0.9);
+  border-radius: 999rpx;
+  padding: 4rpx 12rpx;
+}
+
+.ge-upload image {
+  width: 100%;
+  height: 100%;
+}
+
+.ge-upload-empty {
+  text-align: center;
+  color: #9c9ca6;
+}
+
+.ge-upload-empty .plus {
+  display: block;
+  font-size: 60rpx;
+  line-height: 1;
+  color: #d8d8dd;
+}
+
+.ge-upload-empty .tip {
+  display: block;
+  margin-top: 12rpx;
+  font-size: 23rpx;
+}
+
+.ge-note {
+  margin-top: 16rpx;
+  font-size: 21rpx;
+  color: #9c9ca6;
+}
+
+.ge-sku {
+  display: flex;
+  align-items: center;
+  min-height: 88rpx;
+  border-bottom: 1rpx solid #eeeef2;
+}
+
+.ge-sku:last-child {
+  border-bottom: none;
+}
+
+.ge-sku-label {
+  flex: 1;
+  font-size: 26rpx;
+  color: #62626e;
+}
+
+.ge-sku input {
+  width: 180rpx;
+  text-align: right;
+  font-size: 27rpx;
+}
+
+.f-row {
+  display: flex;
+  align-items: center;
+  min-height: 96rpx;
+  border-bottom: 1rpx solid #eeeef2;
+}
+
+.f-row:last-child {
+  border-bottom: none;
+}
+
+.f-label {
+  width: 200rpx;
+  flex: none;
+  font-size: 27rpx;
+  color: #62626e;
+}
+
+.f-row input {
+  flex: 1;
+  font-size: 27rpx;
+}
+
+.ge-tip {
+  margin: 8rpx 32rpx 0;
+  font-size: 22rpx;
+  color: #9c9ca6;
+  line-height: 36rpx;
+}
+
+.ge-bar {
+  padding: 16rpx 24rpx calc(16rpx + env(safe-area-inset-bottom));
+}
+
+.ge-btn.off {
+  opacity: 0.6;
+}

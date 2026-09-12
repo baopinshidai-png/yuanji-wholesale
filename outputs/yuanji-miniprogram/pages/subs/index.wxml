@@ -1,0 +1,29 @@
+<view class="page">
+  <view class="nav" style="padding-top:{{statusBarHeight}}px">
+    <view class="nav-inner" style="height:{{navBarHeight}}px">
+      <view class="nav-back" bindtap="back">‹</view>
+      订阅档口
+    </view>
+  </view>
+
+  <view class="card" wx:for="{{stalls}}" wx:key="id">
+    <view class="row-between">
+      <view class="s-left" data-id="{{item.id}}" bindtap="goStall">
+        <view class="s-avatar">{{item.name}}</view>
+        <view class="s-info">
+          <view class="s-name">{{item.name}}</view>
+          <view class="muted">{{item.market}} · {{item.address}}</view>
+          <view class="s-meta">今日上新 {{item.newCount}} · 评分 {{item.score}}</view>
+        </view>
+      </view>
+      <view class="btn-mini ghost" data-id="{{item.id}}" catchtap="unsub">取消订阅</view>
+    </view>
+  </view>
+
+  <view class="empty" wx:if="{{!stalls.length}}">
+    <image class="empty-img" src="/images/icons/shop.png" />
+    <text class="t">还没有订阅档口</text>
+    <text class="s">进店后点「订阅档口」，上新第一时间提醒</text>
+    <view class="btn-mini" bindtap="goHome">去逛档口</view>
+  </view>
+</view>

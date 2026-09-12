@@ -1,0 +1,25 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <style>
+      body { margin: 0; background: #fff; font-family: system-ui; }
+      .grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 8px; padding: 8px; }
+      .cell { border: 1px solid #eee; border-radius: 8px; overflow: hidden; }
+      .cell img { width: 100%; display: block; }
+      .cap { font-size: 10px; color: #666; text-align: center; padding: 2px; }
+    </style>
+  </head>
+  <body>
+    <div class="grid" id="g"></div>
+    <script>
+      const g = document.getElementById('g')
+      for (let i = 1; i <= 18; i++) {
+        g.insertAdjacentHTML(
+          'beforeend',
+          `<div class="cell"><img src="../outputs/clothing-wholesale/public/goods/g${i}.svg"><div class="cap">g${i}</div></div>`,
+        )
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,88 @@
+.doc-page {
+  padding-bottom: 80rpx;
+}
+
+.doc-head {
+  background: #fff;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.doc-nav {
+  display: flex;
+  align-items: center;
+  padding: 0 20rpx;
+}
+
+.back {
+  width: 60rpx;
+  font-size: 44rpx;
+  line-height: 1;
+}
+
+.doc-nav-title {
+  font-size: 30rpx;
+  font-weight: 600;
+  margin: 0 auto;
+}
+
+.doc-tabs {
+  display: flex;
+  padding: 0 12rpx 12rpx;
+}
+
+.doc-tab {
+  flex: 1;
+  text-align: center;
+  font-size: 26rpx;
+  color: #62626e;
+  padding: 14rpx 0;
+  border-radius: 999rpx;
+}
+
+.doc-tab.on {
+  color: #ff3355;
+  font-weight: 700;
+  background: #fff0f3;
+}
+
+.doc-body {
+  padding: 32rpx 40rpx;
+}
+
+.doc-title {
+  font-size: 42rpx;
+  font-weight: 700;
+}
+
+.doc-updated {
+  margin-top: 12rpx;
+  font-size: 23rpx;
+  color: #9c9ca6;
+}
+
+.doc-sec {
+  margin-top: 36rpx;
+}
+
+.doc-h {
+  font-size: 29rpx;
+  font-weight: 600;
+  margin-bottom: 12rpx;
+}
+
+.doc-p {
+  font-size: 26rpx;
+  color: #3f3f4a;
+  line-height: 48rpx;
+}
+
+.doc-foot {
+  margin-top: 48rpx;
+  padding-top: 24rpx;
+  border-top: 1rpx solid #eeeef2;
+  font-size: 23rpx;
+  color: #9c9ca6;
+  line-height: 38rpx;
+}

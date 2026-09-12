@@ -1,0 +1,27 @@
+<view class="page">
+  <view class="nav" style="padding-top:{{statusBarHeight}}px">
+    <view class="nav-inner" style="height:{{navBarHeight}}px">
+      <view class="nav-back" bindtap="back">‹</view>
+      红包 / 卡券
+    </view>
+  </view>
+
+  <view class="cp-head">
+    <view class="cp-title">新人 60 元礼包</view>
+    <view class="cp-sub">已领取 {{claimedCount}} / {{coupons.length}} 张 · 可与档口阶梯满减叠加</view>
+  </view>
+
+  <view class="cp" wx:for="{{coupons}}" wx:key="id">
+    <view class="cp-left">
+      <view class="cp-amount" wx:if="{{item.amount}}"><text class="rmb">¥</text>{{item.amount}}</view>
+      <view class="cp-amount small" wx:else>{{item.type}}</view>
+      <view class="cp-cond">满 {{item.threshold}} 可用</view>
+    </view>
+    <view class="cp-mid">
+      <view class="cp-name">{{item.title}}</view>
+      <view class="cp-desc">{{item.desc}}</view>
+      <view class="cp-expire">有效期至 {{item.expire}}</view>
+    </view>
+    <view class="cp-btn {{item.claimed ? 'done' : ''}}" data-id="{{item.id}}" catchtap="claim">{{item.claimed ? '已领取' : '领取'}}</view>
+  </view>
+</view>

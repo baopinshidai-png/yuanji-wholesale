@@ -1,0 +1,77 @@
+<view class="page odt">
+  <view class="nav" style="padding-top:{{statusBarHeight}}px">
+    <view class="nav-inner" style="height:{{navBarHeight}}px">
+      <view class="nav-back" bindtap="back">‹</view>
+      订单详情
+    </view>
+  </view>
+
+  <block wx:if="{{order}}">
+    <view class="hero">
+      <view class="hero-status">{{statusText}}</view>
+      <view class="hero-tip">
+        {{order.status === 'unpaid' ? '请尽快完成支付，档口备货后 24H 内发出' : order.status === 'unship' ? '档口正在备货，未按承诺时间发出可取消' : order.status === 'shipped' ? '包裹已发出，注意查收' : order.status === 'done' ? '交易完成，欢迎再次拿货' : order.status === 'refunding' ? '退款处理中，到账时间以微信支付为准' : order.status === 'refunded' ? '退款已完成，原路退回' : '订单已取消'}}
+      </view>
+    </view>
+
+    <view class="card" wx:if="{{order.logistics}}">
+      <view class="row-between">
+        <text class="row-title">物流信息</text>
+        <text class="muted">{{trace ? trace.status : ''}}</text>
+      </view>
+      <view class="muted">运单号 {{order.logistics}}</view>
+      <view class="trace" wx:if="{{trace}}">
+        <view class="trace-item {{index === 0 ? 'on' : ''}}" wx:for="{{trace.steps}}" wx:key="time">
+          <view class="trace-dot"></view>
+          <view class="trace-body">
+            <text class="trace-text">{{item.text}}</text>
+            <text class="trace-time">{{item.time}}</text>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <view class="card">
+      <view class="row-title">收货信息</view>
+      <view class="addr-line">
+        <text class="addr-name">{{order.address.name}}</text>
+        <text class="muted">{{order.address.phone}}</text>
+      </view>
+      <view class="addr-detail">{{order.address.region}} {{order.address.detail}}</view>
+    </view>
+
+    <view class="card">
+      <view class="row-title">商品清单（共 {{count}} 件）</view>
+      <view class="odt-item" wx:for="{{order.items}}" wx:key="goodsId">
+        <image src="{{item.imgUrl}}" mode="aspectFill" />
+        <view class="odt-body">
+          <view class="odt-title">{{item.title}}</view>
+          <view class="muted">{{item.color}} / {{item.size}}　{{item.stallName}}</view>
+          <view class="odt-price"><text class="price"><text class="rmb">¥</text>{{item.price}}</text><text class="muted">x{{item.qty}}</text></view>
+        </view>
+      </view>
+    </view>
+
+    <view class="card">
+      <view class="row-title">金额明细</view>
+      <view class="amt"><text>商品总价</text><text>¥{{order.total}}</text></view>
+      <view class="amt"><text>共计优惠</text><text class="minus">-¥{{order.discount}}</text></view>
+      <view class="amt strong"><text>实付金额</text><text>¥{{order.payable}}</text></view>
+    </view>
+
+    <view class="card">
+      <view class="row-title">订单信息</view>
+      <view class="amt"><text>订单号</text><text bindtap="copy">{{order.id}} 复制</text></view>
+      <view class="amt"><text>下单时间</text><text>{{order.createdAt}}</text></view>
+      <view class="amt" wx:if="{{order.remark}}"><text>备注</text><text>{{order.remark}}</text></view>
+    </view>
+
+    <view class="fixed-bar odt-bar">
+      <view class="odt-btn ghost" wx:if="{{order.status === 'unship' || order.status === 'shipped' || order.status === 'done'}}" bindtap="refund">申请退款</view>
+      <view class="odt-btn ghost" wx:if="{{order.status === 'unship' || order.status === 'shipped' || order.status === 'done'}}" bindtap="afterSale">申请售后</view>
+      <view class="odt-btn" bindtap="act">
+        {{order.status === 'unpaid' ? '去付款' : order.status === 'unship' ? '模拟档口发货' : order.status === 'shipped' ? '确认收货' : '继续拿货'}}
+      </view>
+    </view>
+  </block>
+</view>

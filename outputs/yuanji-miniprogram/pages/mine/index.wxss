@@ -1,0 +1,211 @@
+.page {
+  padding-bottom: 160rpx;
+}
+
+.m-top {
+  background: linear-gradient(180deg, #fff0f3, #f6f7f9);
+  padding-bottom: 40rpx;
+}
+
+.m-head {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  /* 右上角要让开微信胶囊按钮 */
+  padding: 0 200rpx 0 28rpx;
+}
+
+.m-setting {
+  font-size: 25rpx;
+  color: #62626e;
+}
+
+.m-profile {
+  display: flex;
+  align-items: center;
+  padding: 12rpx 32rpx 0;
+}
+
+.m-avatar {
+  width: 116rpx;
+  height: 116rpx;
+  border-radius: 50%;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 44rpx;
+  font-weight: 700;
+  color: #ff3355;
+  flex: none;
+  box-shadow: 0 6rpx 20rpx rgba(255, 51, 85, 0.12);
+}
+
+.m-avatar .icon-img {
+  opacity: 0.5;
+}
+
+.m-info {
+  flex: 1;
+  margin-left: 24rpx;
+  min-width: 0;
+}
+
+.m-name {
+  font-size: 36rpx;
+  font-weight: 700;
+}
+
+.m-sub {
+  margin-top: 8rpx;
+  font-size: 23rpx;
+  color: #62626e;
+}
+
+.m-cert {
+  flex: none;
+  font-size: 24rpx;
+  font-weight: 600;
+  color: #fff;
+  background: linear-gradient(96deg, #ff5c7a, #ff3355);
+  border-radius: 999rpx;
+  padding: 12rpx 26rpx;
+}
+
+.m-cert.done {
+  color: #0d8f60;
+  background: #eafaf3;
+}
+
+.m-quick {
+  margin-top: -24rpx;
+  display: flex;
+  padding: 28rpx 12rpx;
+  position: relative;
+  z-index: 2;
+}
+
+.m-quick-item {
+  flex: 1;
+  text-align: center;
+}
+
+.m-quick-item .n {
+  display: block;
+  margin-top: 10rpx;
+  font-size: 30rpx;
+  font-weight: 700;
+}
+
+.m-quick-item .t {
+  display: block;
+  font-size: 22rpx;
+  color: #9c9ca6;
+  margin-top: 2rpx;
+}
+
+.row-title {
+  font-size: 29rpx;
+  font-weight: 600;
+}
+
+.m-grid4,
+.m-grid3 {
+  display: flex;
+  margin-top: 24rpx;
+}
+
+.m-grid-item {
+  flex: 1;
+  text-align: center;
+}
+
+.m-grid-item .t {
+  display: block;
+  margin-top: 10rpx;
+  font-size: 22rpx;
+  color: #62626e;
+}
+
+.m-grid-item .num {
+  display: block;
+  font-size: 34rpx;
+  font-weight: 700;
+}
+
+.m-act-row {
+  display: flex;
+  margin: 0 24rpx;
+}
+
+.m-act-item {
+  flex: 1;
+  background: linear-gradient(135deg, #eef4ff, #e2ecff);
+  border-radius: 24rpx;
+  padding: 24rpx;
+  margin-right: 16rpx;
+}
+
+.m-act-item:last-child {
+  margin-right: 0;
+}
+
+.m-act-item.pink {
+  background: linear-gradient(135deg, #fff2f4, #ffe6eb);
+}
+
+.a-title {
+  display: block;
+  font-size: 28rpx;
+  font-weight: 700;
+}
+
+.a-sub {
+  display: block;
+  margin-top: 8rpx;
+  font-size: 21rpx;
+  color: #62626e;
+}
+
+.m-srv {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 92rpx;
+  border-bottom: 1rpx solid #f2f2f5;
+  font-size: 27rpx;
+}
+
+.m-srv:last-child {
+  border-bottom: none;
+}
+
+.m-srv .arrow {
+  color: #9c9ca6;
+  font-size: 26rpx;
+}
+
+button.m-srv-btn {
+  background: transparent;
+  padding: 0;
+  margin: 0;
+  line-height: 1.45;
+  font-size: 27rpx;
+  color: #17171c;
+  text-align: left;
+}
+
+button.m-srv-btn::after {
+  border: none;
+}
+
+.m-logout {
+  margin: 32rpx 24rpx 0;
+  background: #fff;
+  border-radius: 999rpx;
+  text-align: center;
+  font-size: 28rpx;
+  color: #62626e;
+  padding: 26rpx 0;
+  box-shadow: 0 2rpx 14rpx rgba(17, 17, 30, 0.05);
+}

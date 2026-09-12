@@ -1,0 +1,15 @@
+{
+  "name": "yuanji-server",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "源集 · 服装批发小程序后端（零依赖 Node 服务，MVP）",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js",
+    "reset": "node scripts/reset-db.js"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

@@ -1,0 +1,70 @@
+.page {
+  padding-bottom: 60rpx;
+}
+
+.mt-tip {
+  margin: 8rpx 24rpx 0;
+  background: #fff;
+  border-radius: 20rpx;
+  padding: 24rpx;
+  font-size: 23rpx;
+  color: #62626e;
+  line-height: 36rpx;
+  box-shadow: 0 2rpx 14rpx rgba(17, 17, 30, 0.05);
+}
+
+.mt-grid {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 12rpx 16rpx;
+}
+
+.mt-item {
+  width: calc(50% - 16rpx);
+  margin: 8rpx;
+  background: #fff;
+  border-radius: 20rpx;
+  overflow: hidden;
+  box-shadow: 0 2rpx 12rpx rgba(17, 17, 30, 0.05);
+}
+
+.mt-item image {
+  width: 100%;
+  height: 420rpx;
+  display: block;
+  background: #f4f4f6;
+}
+
+.mt-title {
+  padding: 16rpx 18rpx 0;
+  font-size: 25rpx;
+  line-height: 36rpx;
+  height: 72rpx;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+
+.mt-ops {
+  display: flex;
+  padding: 16rpx 18rpx 20rpx;
+}
+
+.mt-btn {
+  flex: 1;
+  text-align: center;
+  font-size: 23rpx;
+  font-weight: 600;
+  color: #fff;
+  background: linear-gradient(96deg, #ff5c7a, #ff3355);
+  border-radius: 999rpx;
+  padding: 14rpx 0;
+  margin-right: 12rpx;
+}
+
+.mt-btn.ghost {
+  color: #ff3355;
+  background: #fff0f3;
+  margin-right: 0;
+}
